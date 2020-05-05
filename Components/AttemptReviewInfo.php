@@ -11,11 +11,12 @@ class AttemptReviewInfo extends Component
      *
      * @return void
      */
-    public $attempt, $hasil;
-    public function __construct($attempt, $hasil)
+    public $attempt, $hasil, $type;
+    public function __construct($attempt, $hasil, $type)
     {
         $this->hasil = $hasil;
         $this->attempt = $attempt;
+        $this->type = $type;
     }
 
     /**

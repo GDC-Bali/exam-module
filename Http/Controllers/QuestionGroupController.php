@@ -71,8 +71,11 @@ class QuestionGroupController extends Controller
             if(!isset($data['availability'])){
                 $data['availability'] = 0;
             }else if($data['availability'] == 'on')
-                $data['availability'] = 1;            
-            $data['created_by'] = $data['updated_by'] = $data['owner_id'] = 1;
+                $data['availability'] = 1;
+            if(Auth::check())
+                $data['created_by'] = $data['updated_by'] = $data['owner_id'] = Auth::user()->id;
+            else
+                $data['created_by'] = $data['updated_by'] = $data['owner_id'] = 1;
 
             QuestionGroup::create($data);
             return ['status' => true];
@@ -142,7 +145,10 @@ class QuestionGroupController extends Controller
                 $data['availability'] = 0;
             }else if($data['availability'] == 'on')
                 $data['availability'] = 1;            
-            $data['created_by'] = $data['updated_by'] = $data['owner_id'] = 1;
+            if(Auth::check())
+                $data['updated_by'] = $data['owner_id'] = Auth::user()->id;
+            else
+                $data['updated_by'] = $data['owner_id'] = 1;
 
             QuestionGroup::where('id', $id)->update($data);
             return ['status' => true];
@@ -175,12 +181,20 @@ class QuestionGroupController extends Controller
         }        
     }
 
+    public function ordering($group_id){
+        $data = GroupHasQuestion::where('group_id',$group_id)->orderBy('order','ASC')->get();
+        foreach($data as $key => $item){
+            GroupHasQuestion::where('group_id',$item->group_id)->where('question_id', $item->question_id)->update(['order'=>($key+1)]);
+        }
+    }
+
     public function addQuestionFromBank(Request $request)
     {        
         try {            
             $group = QuestionGroup::find($request->paket_id);
             $order = GroupHasQuestion::where('group_id',$request->paket_id)->count();
             $group->questions()->attach($request->soals,['order'=>($order+1)]);
+            Self::ordering($request->paket_id);
             // $questionCount = $group->questions()->count();
             // $order = $questionCount+1;
             // foreach($request->soals as $soal){
@@ -201,6 +215,7 @@ class QuestionGroupController extends Controller
         try {
             $group = QuestionGroup::find($request->id);
             $group->questions()->detach($request->soal);
+            Self::ordering($request->id);
             return ['status' => true];
         } catch (\Throwable $th) {
             return response()->json([

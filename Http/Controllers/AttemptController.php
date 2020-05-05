@@ -19,6 +19,8 @@ use Session;
 use Carbon\Carbon;
 use DataTables;
 
+use Modules\Exam\Http\Helpers\Attempt as AttemptHelper;
+
 
 class AttemptController extends Controller
 {
@@ -265,34 +267,57 @@ class AttemptController extends Controller
     }
 
     public function result($id){
+        $type = Attempt::with('group.questions.type')->find($id);
+        $type = $type->group->questions[0]->type->type;
         $attempt = Attempt::with(['group','answer.option'])->find($id);
         $hasil['benar'] = 0;
-        foreach($attempt->answer as $answer){            
-            if($answer->point == 100)
-                $hasil['benar']++;
+        if($type == 'Essay'){            
+            foreach($attempt->answer as $answer){            
+                if($answer->flag_marked == 1)
+                    $hasil['benar']++;
+            }            
+        }else{            
+            foreach($attempt->answer as $answer){            
+                if($answer->point == 100)
+                    $hasil['benar']++;
+            }            
         }
         $hasil['salah'] = count($attempt->answer) - $hasil['benar'];
+
         if($attempt->start_at == null || $attempt->finish_at == null){
             $hasil['waktu'] = '--:--:--';
         }else{
             $hasil['waktu'] = Carbon::parse($attempt->finish_at)->diffInSeconds(Carbon::parse($attempt->start_at));
             $hasil['waktu'] = gmdate('H:i:s', $hasil['waktu']);
         }
-        return view('exam::attempt.result', compact(['attempt','hasil']));
+        return view('exam::attempt.result', compact(['attempt','hasil','type']));
     }
 
     public function review($id){
-        $attempt = Attempt::with(['group','answer.option'])->find($id);        
+        $type = Attempt::with('group.questions.type')->find($id);
+        $type = $type->group->questions[0]->type->type;
+        $attempt = Attempt::with(['group','answer.option'])->find($id);
         $group = GroupHasQuestion::where('group_id', $attempt->question_group_id)->first();
         $question = Question::with('type')->find($group->question_id);
         $group = QuestionGroup::with('questions')->find($attempt->question_group_id);
         $hasil['belum_dijawab'] = $attempt->question_total - count($attempt->answer);
         $hasil['benar'] = 0;
-        foreach($attempt->answer as $answer){            
-            if($answer->point == 100)
-                $hasil['benar']++;
+        if($type == 'Essay'){ 
+            foreach($attempt->answer as $answer){            
+                if($answer->flag_marked == 1)
+                    $hasil['benar']++;
+            }
+        }else{            
+            foreach($attempt->answer as $answer){            
+                if($answer->point == 100)
+                    $hasil['benar']++;
+            }            
         }
+        $hasil['salah'] = count($attempt->answer) - $hasil['benar'];
         $ans = GroupHasQuestion::addSelect(['point' => AttemptAnswer::select('point')
+            ->whereColumn('attempt_id', 'ms_attempt.id')
+            ->whereColumn('question_id','ms_group_has_question.question_id')
+        ])->addSelect(['flag_marked' => AttemptAnswer::select('flag_marked')
             ->whereColumn('attempt_id', 'ms_attempt.id')
             ->whereColumn('question_id','ms_group_has_question.question_id')
         ])
@@ -301,20 +326,32 @@ class AttemptController extends Controller
         ->orderBy('order','ASC')        
         ->get();
         
-        foreach($ans as $key => $val){            
-            if($val->point == null)
-                $hasil['no'][$key+1] = 0;
-            else{            
-                if($val->point == 100)
-                    $hasil['no'][$key+1] = 1;
-                else if($val->point == 0)
-                    $hasil['no'][$key+1] = -1;
-                else
+        if($type == 'Essay'){ 
+            foreach($ans as $key => $val){
+                if($val->point == null)
                     $hasil['no'][$key+1] = 0;
+                else{            
+                    if($val->flag_marked == 1)
+                        $hasil['no'][$key+1] = 1;
+                    else if($val->flag_marked == 0)
+                        $hasil['no'][$key+1] = -1;
+                }
             }
-        }        
-        $hasil['salah'] = count($attempt->answer) - $hasil['benar'];        
-        return view('exam::attempt.review', compact(['attempt','question','group','hasil']));
+        }else{
+            foreach($ans as $key => $val){
+                if($val->point == null)
+                    $hasil['no'][$key+1] = 0;
+                else{            
+                    if($val->point == 100)
+                        $hasil['no'][$key+1] = 1;
+                    else if($val->point == 0)
+                        $hasil['no'][$key+1] = -1;
+                    else
+                        $hasil['no'][$key+1] = 0;
+                }
+            }
+        }
+        return view('exam::attempt.review', compact(['attempt','question','group','hasil','type']));
     }
 
     public function getDatatable(Request $request){
@@ -372,9 +409,18 @@ class AttemptController extends Controller
     public function saveEssay($id, Request $request){
         try {
             AttemptAnswer::where('id', $id)->update(['point'=>$request->point,'flag_marked'=>1]);
-            return response()->json(['status' => true]);
+            $attempt_answers = AttemptAnswer::find($id);
+            $attempt = Attempt::with(['group','answer.option'])->find($attempt_answers->attempt_id);
+            $hasil['benar'] = 0;
+            foreach($attempt->answer as $answer){            
+                if($answer->flag_marked == 1)
+                    $hasil['benar']++;
+            }
+            $hasil['nilai'] = AttemptHelper::countEssayAttempt($attempt->id);
+            $hasil['salah'] = count($attempt->answer) - $hasil['benar'];
+            return response()->json(['status' => true,'hasil'=>$hasil]);
         } catch (\Throwable $th) {
-            return response()->json(['status' => false]);
+            return response()->json(['status' => false,'message' => $th->getMessage()]);
         }
 
     }

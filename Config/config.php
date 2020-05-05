@@ -2,6 +2,11 @@
 
 return [
     'name' => 'Exam',
+    'route' => [
+        'filter' => false,
+        'key' => null,
+        'name' => null,
+    ],
     'layout' => [
         'master' => 'adminlte::page',
         'title' => 'title',

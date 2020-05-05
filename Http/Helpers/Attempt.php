@@ -3,6 +3,7 @@
 namespace Modules\Exam\Http\Helpers;
 
 use Modules\Exam\Entities\Attempt as AttemptModel;
+use Modules\Exam\Entities\AttemptAnswer;
 use Modules\Exam\Entities\Question;
 use Modules\Exam\Entities\QuestionGroup;
 use Modules\Exam\Entities\QuestionType;
@@ -80,5 +81,15 @@ class Attempt
                             ->whereIn('status', [AttemptModel::STATUS_FINISHED, AttemptModel::STATUS_REVIEWED])
                             ->orderBy('finish_at', 'desc')
                             ->get();
+    }
+
+    public static function countEssayAttempt($attemptId){        
+        $attemptAnswer = AttemptAnswer::where('attempt_id', $attemptId)->where('flag_marked',1)->get();
+        $total = 0;
+        foreach($attemptAnswer as $val){
+            $total += $val->point;
+        }
+        AttemptModel::where('id',$attemptId)->update(['grade'=>$total]);
+        return $total;
     }
 }

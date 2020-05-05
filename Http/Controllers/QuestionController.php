@@ -96,7 +96,10 @@ class QuestionController extends Controller
                 $data['single_answer'] = 0;
             }
                 
-            $data['created_by'] = $data['updated_by'] = $data['owner_id'] = 1;
+            if(Auth::check())
+                $data['created_by'] = $data['updated_by'] = $data['owner_id'] = Auth::user()->id;
+            else
+                $data['created_by'] = $data['updated_by'] = $data['owner_id'] = 1;
             $question = Question::create($data);
             
             if($request->question_type_id == 1){
@@ -212,7 +215,10 @@ class QuestionController extends Controller
                 $data['single_answer'] = 0;
             }
                 
-            $data['updated_by'] = $data['owner_id'] = 1;
+            if(Auth::check())
+                $data['updated_by'] = $data['owner_id'] = Auth::user()->id;
+            else
+                $data['updated_by'] = $data['owner_id'] = 1;
             $question = Question::where('id',$id)->update($data);
             $created_at = Question::find($id)->created_at;
             QuestionOption::where('question_id',$id)->delete();

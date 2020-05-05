@@ -57,7 +57,7 @@
     <div class="col-md-12 pt-3 mb-5">
         <div class="row">
             <div class="col-md-8">
-                <x-exam-attempt-review-info :hasil='$hasil' :attempt='$attempt'/>
+                <x-exam-attempt-review-info :type='$type' :hasil='$hasil' :attempt='$attempt'/>
                 <x-exam-attempt-review-content :attempt="$attempt" :group='$group'/>
             </div>            
             <x-exam-attempt-review-number :hasil="$hasil"/>
@@ -235,10 +235,19 @@
             success: function (res){
                 $('#soal-container #save-ans #btn-save-ans').attr('disabled', false);
                 $('#soal-container #save-ans #btn-save-ans').text('SIMPAN NILAI');
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Nilai berhasil disimpan',
-                })
+                if(res.status){
+                    $('#nilai_salah').text(res.hasil['salah']);
+                    $('#nilai_benar').text(res.hasil['benar']);
+                    $('#essayValue').text(res.hasil['nilai']);
+                    var number = $('#numbers').attr('data-number');
+                    $('a[data-number="'+number+'"]').removeClass("btn-danger");
+                    $('a[data-number="'+number+'"]').removeClass("btn-light");
+                    $('a[data-number="'+number+'"]').addClass("btn-success");
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Nilai berhasil disimpan',
+                    })
+                }
             },
             error: function(err){
                 $('#soal-container #save-ans #btn-save-ans').attr('disabled', false);

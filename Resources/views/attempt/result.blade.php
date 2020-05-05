@@ -9,7 +9,11 @@
             <h2 class="h6 text-center mb-4">Total Nilai Anda Adalah</h2>
             <div class="progress mx-auto" data-value='{{$attempt->grade}}'> <span class="progress-left"> <span class="progress-bar border-success"></span> </span> <span class="progress-right"> <span class="progress-bar border-success"></span> </span>
                 <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                    <div class="h2 font-weight-bold">{{number_format($attempt->grade,0)}}/100</div>
+                    @if($type == 'Essay')
+                        <div class="h2 font-weight-bold">{{number_format($attempt->grade,0)}}</div>
+                    @else
+                        <div class="h2 font-weight-bold">{{number_format($attempt->grade,0)}}/100</div>
+                    @endif
                 </div>
             </div>
             <div class="card mt-3 p-3 shadow">
@@ -30,7 +34,7 @@
                     <div class="col">
                         <div class="text-group">
                             <div style="font-size: 14px">
-                                <small class="text-secondary">Jawaban Benar</small>
+                                <small class="text-secondary">{{$type == 'Essay' ? "Jawaban Dinilai" : "Jawaban Benar"}}</small>
                             </div>
                             <span class="text-success">
                                 <i class='fa fa-circle '></i>
@@ -43,7 +47,7 @@
                     <div class="col">
                         <div class="text-group">
                             <div style="font-size: 14px">
-                                <small class="text-secondary">Jawaban Salah</small>
+                                <small class="text-secondary">{{$type == 'Essay' ? "Belum Dinilai" : "Jawaban Salah"}}</small>
                             </div>
                             <span class="text-danger">
                                 <i class='fa fa-circle '></i>

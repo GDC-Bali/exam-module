@@ -10,23 +10,27 @@
             <div class="row">                
                 <div class="progress mx-auto" data-value='{{$attempt->grade}}'> <span class="progress-left"> <span class="progress-bar border-success"></span> </span> <span class="progress-right"> <span class="progress-bar border-success"></span> </span>
                     <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                        @if($type == 'Essay')
+                        <div id="essayValue" class="h6 font-weight-bold">{{number_format($attempt->grade,0)}}</div>
+                        @else
                         <div class="h6 font-weight-bold">{{number_format($attempt->grade,0)}}/100</div>
+                        @endif
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-4 text-center">
-                    <small>Jawaban Benar</small>
+                <div class="col-4 text-center">                    
+                    <small>{{$type == 'Essay' ? "Sudah Dinilai" : "Jawaban Benar"}}</small>
                     <div>
                         <span class="text-success"><i class='fa fa-circle '></i></span>
-                        <span class="m-0 font-weight-bold">{{$hasil['benar']}}</span>
+                        <span id="nilai_benar" class="m-0 font-weight-bold">{{$hasil['benar']}}</span>
                     </div>
                 </div>
                 <div class="col-4 text-center">
-                    <small>Jawaban Salah</small>
+                    <small>{{$type == 'Essay' ? "Belum Dinilai" : "Jawaban Salah"}}</small>
                     <div>
                         <span class="text-danger"><i class='fa fa-circle '></i></span>            
-                        <span class="m-0 font-weight-bold">{{$hasil['salah']}}</span>
+                        <span id="nilai_salah" class="m-0 font-weight-bold">{{$hasil['salah']}}</span>
                     </div>
                 </div>
                 <div class="col-4 text-center">

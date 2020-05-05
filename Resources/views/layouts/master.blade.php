@@ -1,4 +1,4 @@
-@extends(config('exam.layout.master'))
+@extends(config('exam.layout.master'), [config('exam.route.key') => config('exam.route.name')])    
 @section(config('exam.layout.content', 'content'))
     @include('exam::includes.topnav')
     @yield('content_exam')
