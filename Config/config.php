@@ -13,5 +13,7 @@ return [
         'header' => 'content_header',
         'content' => 'content',
         'attempt' => 'content',
+        'style' => 'content',
+        'script' => 'content',
     ]
 ];

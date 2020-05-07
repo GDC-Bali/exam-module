@@ -3,7 +3,7 @@
     @include('exam::includes.topnav')
     @yield('content_exam')
 @endsection
-@section('css')
+@section(config('exam.layout.style'))
     <link href="{{ Module::asset('exam:lib/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ Module::asset('exam:lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
     <link href="{{ Module::asset('exam:lib/typicons.font/typicons.css') }}" rel="stylesheet">
@@ -18,7 +18,7 @@
     <link href="{{ Module::asset('exam:lib/smartwizard/css/smart_wizard_theme_dots.min.css') }}" rel="stylesheet">
     <link href="{{ Module::asset('exam:css/style.css') }}" rel="stylesheet">
 @stop
-@section('js')
+@section(config('exam.layout.script'))
     {{-- <script src="{{ Module::asset('exam:lib/jquery/jquery.min.js') }}"></script> --}}
     {{-- <script src="{{ Module::asset('exam:lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
     <script src="{{ Module::asset('exam:lib/ionicons/ionicons.js') }}"></script>
