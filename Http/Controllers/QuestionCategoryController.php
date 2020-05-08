@@ -51,8 +51,11 @@ class QuestionCategoryController extends Controller
             ], 400);
         }
         try {
-            $data = $request->except('_token');            
-            $data['created_by'] = $data['updated_by'] = 1;            
+            $data = $request->except('_token');       
+            if(Auth::check())
+                $data['created_by'] = $data['updated_by'] = Auth::user()->id;
+            else  
+                $data['created_by'] = $data['updated_by'] = 1;            
             QuestionCategory::create($data);
             return ['status' => true];
         } catch (\Throwable $th) {
@@ -104,7 +107,10 @@ class QuestionCategoryController extends Controller
         }
         try {
             $data = $request->except('_token', '_method');
-            $data['updated_by'] = 1;
+            if(Auth::check())
+                $data['updated_by'] = Auth::user()->id;
+            else  
+                $data['updated_by'] = 1; 
             QuestionCategory::where('id', $id)->update($data);
             return ['status' => true];
         } catch (\Throwable $th) {

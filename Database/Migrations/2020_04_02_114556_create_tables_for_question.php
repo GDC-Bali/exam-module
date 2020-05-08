@@ -18,8 +18,8 @@ class CreateTablesForQuestion extends Migration
             $table->string('type', 255);
             $table->text('desc');
             $table->timestamps();
-            $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->uuid('created_by');
+            $table->uuid('updated_by');
         });
 
         Schema::create('ms_question_type', function (Blueprint $table) {
@@ -42,8 +42,8 @@ class CreateTablesForQuestion extends Migration
             $table->text('additional_note');
             $table->text('feedback');
             $table->timestamps();
-            $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->uuid('created_by');
+            $table->uuid('updated_by');
         });
 
         Schema::create('ms_question_option', function (Blueprint $table) {
@@ -71,8 +71,8 @@ class CreateTablesForQuestion extends Migration
             $table->integer('owner_id')->unsigned();
             $table->boolean('availability')->default(0);
             $table->timestamps();
-            $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->uuid('created_by');
+            $table->uuid('updated_by');
         });
 
         Schema::create('ms_group_has_question', function (Blueprint $table) {
