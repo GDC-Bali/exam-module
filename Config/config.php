@@ -3,6 +3,9 @@
 return [
     'name' => 'Exam',
     'navbar-class' => 'bg-dark',
+    'middleware' => [
+        
+    ],
     'route' => [
         'filter' => false,
         'key' => null,

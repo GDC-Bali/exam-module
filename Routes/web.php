@@ -11,7 +11,7 @@
 |
 */
 
-Route::prefix('exam')->name('exam.')->group(function() {
+Route::middleware(config('exam.middleware', []))->prefix('exam')->name('exam.')->group(function() {
     Route::get('/', 'ExamController@index')->name('dashboard');
 
     Route::resource('/group-category', 'GroupCategoryController');
