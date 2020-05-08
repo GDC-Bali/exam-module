@@ -2,6 +2,7 @@
 
 return [
     'name' => 'Exam',
+    'navbar-class' => 'bg-dark',
     'route' => [
         'filter' => false,
         'key' => null,
@@ -13,7 +14,16 @@ return [
         'header' => 'content_header',
         'content' => 'content',
         'attempt' => 'content',
-        'style' => 'content',
-        'script' => 'content',
-    ]
+        'style' => 'css',
+        'script' => 'js',
+    ],
+    'plugins' => [
+        'ionicons' => true,
+        'select2' => true,
+        'icheck' => true,
+        'sweetalert2' => true,
+        'datatables' => true,
+        'smartwizard' => true,
+        'bootstrap4-toggle' => true,
+    ],
 ];

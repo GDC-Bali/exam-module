@@ -1,7 +1,7 @@
 <div class="row mb-2">
     <div class="col">
         <div class="nav-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #18b0b0;">
+            <nav class="navbar navbar-expand-lg navbar-dark {{config('exam.navbar-class', 'bg-dark')}}">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
