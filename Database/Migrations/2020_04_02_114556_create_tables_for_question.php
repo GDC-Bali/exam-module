@@ -31,7 +31,7 @@ class CreateTablesForQuestion extends Migration
         Schema::create('ms_question', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('code', 255);
-            $table->integer('owner_id')->unsigned();
+            $table->uuid('owner_id');
             $table->string('competencies', 255);
             $table->unsignedInteger('question_type_id');
             $table->foreign('question_type_id')->references('id')->on('ms_question_type');
