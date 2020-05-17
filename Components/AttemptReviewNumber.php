@@ -24,6 +24,6 @@ class AttemptReviewNumber extends Component
      */
     public function render()
     {
-        return view('exam::components.attempt-review-number');
+        // return view('exam::components.attempt-review-number');
     }
 }

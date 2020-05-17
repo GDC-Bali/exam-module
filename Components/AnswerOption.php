@@ -26,6 +26,6 @@ class AnswerOption extends Component
      */
     public function render()
     {
-        return view('exam::components.answer-option');
+        // return view('exam::components.answer-option');
     }
 }

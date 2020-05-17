@@ -30,6 +30,6 @@ class ButtonIcon extends Component
      */
     public function render()
     {
-        return view('exam::components.button-icon');
+        // return view('exam::components.button-icon');
     }
 }

@@ -28,6 +28,6 @@ class InfoItem extends Component
      */
     public function render()
     {
-        return view('exam::components.info-item');
+        // return view('exam::components.info-item');
     }
 }

@@ -84,8 +84,26 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-10 offset-md-2">
-                            <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/>
-                            <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/>
+                            @component('exam::components.button-icon', [
+                                'type' => 'a',
+                                'id' => '',
+                                'text' => 'Kembali',
+                                'icon' => 'fa-chevron-circle-left',
+                                'link' => 'exam.question-group.index',
+                                'class' => 'btn-secondary btn-sm'
+                            ])
+                            @endcomponent
+                            {{-- <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/> --}}
+                            @component('exam::components.button-icon', [
+                                'type' => 'submit',
+                                'id' => 'submit',
+                                'text' => 'Simpan',
+                                'icon' => 'fa-paper-plane',
+                                'link' => 'exam.question-group.index',
+                                'class' => 'btn-success btn-sm'
+                            ])
+                            @endcomponent
+                            {{-- <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/> --}}
                         </div>
                     </div>
                 </form> 
@@ -333,14 +351,14 @@
         for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
         e.preventDefault();
         $('#submit').prop('disabled', true);
-        $('#submit').html("Submiting...");            
+        // $('#submit').html("Submiting...");            
         $.ajax({
             url: $(this).attr('action'),
             type: $(this).attr('method'),
             data: $(this).serialize(),
             success: function (res){
                 $('#submit').prop('disabled', false);
-                $('#submit').html("Submit");
+                // $('#submit').html("Submit");
                 if(res.status){                        
                     window.location.href = "{{route('exam.question-group.index')}}";
                 }

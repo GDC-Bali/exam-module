@@ -25,6 +25,6 @@ class PaketItem extends Component
      */
     public function render()
     {
-        return view('exam::components.paket-item');
+        // return view('exam::components.paket-item');
     }
 }

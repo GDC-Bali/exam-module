@@ -22,6 +22,6 @@ class AnswerEssay extends Component
      */
     public function render()
     {
-        return view('exam::components.answer-essay');
+        // return view('exam::components.answer-essay');
     }
 }

@@ -28,6 +28,6 @@ class QuestionContent extends Component
      */
     public function render()
     {
-        return view('exam::components.question-content');
+        // return view('exam::components.question-content');
     }
 }

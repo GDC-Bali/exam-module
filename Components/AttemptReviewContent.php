@@ -27,6 +27,6 @@ class AttemptReviewContent extends Component
      */
     public function render()
     {
-        return view('exam::components.attempt-review-content');
+        // return view('exam::components.attempt-review-content');
     }
 }

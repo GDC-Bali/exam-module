@@ -22,6 +22,6 @@ class QuestionInfo extends Component
      */
     public function render()
     {
-        return view('exam::components.question-info');
+        // return view('exam::components.question-info');
     }
 }

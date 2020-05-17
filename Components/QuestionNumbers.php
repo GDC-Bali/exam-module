@@ -25,6 +25,6 @@ class QuestionNumbers extends Component
      */
     public function render()
     {
-        return view('exam::components.question-numbers');
+        // return view('exam::components.question-numbers');
     }
 }
