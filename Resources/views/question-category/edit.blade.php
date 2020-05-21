@@ -21,26 +21,8 @@
                     </div>                    
                     <div class="form-group row">
                         <div class="col-md-10 offset-md-2">
-                            @component('exam::components.button-icon', [
-                                'type' => 'a',
-                                'id' => '',
-                                'text' => 'Kembali',
-                                'icon' => 'fa-chevron-circle-left',
-                                'link' => 'exam.question-category.index',
-                                'class' => 'btn-secondary btn-sm'
-                            ])
-                            @endcomponent
-                            {{-- <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/> --}}
-                            @component('exam::components.button-icon', [
-                                'type' => 'submit',
-                                'id' => 'submit',
-                                'text' => 'Simpan',
-                                'icon' => 'fa-paper-plane',
-                                'link' => 'exam.question-category.index',
-                                'class' => 'btn-success btn-sm'
-                            ])
-                            @endcomponent
-                            {{-- <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/> --}}
+                            <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/>
+                            <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/>
                         </div>
                     </div>
                 </form>  
@@ -53,6 +35,7 @@
     $(document).ready(function(){
         CKEDITOR.replace( 'desc' );
         $('#form').on('submit', function(e){
+            for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
             e.preventDefault();
             $('#submit').prop('disabled', true);            
             $.ajax({

@@ -84,26 +84,8 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-10 offset-md-2">
-                            @component('exam::components.button-icon', [
-                                'type' => 'a',
-                                'id' => '',
-                                'text' => 'Kembali',
-                                'icon' => 'fa-chevron-circle-left',
-                                'link' => 'exam.question-group.index',
-                                'class' => 'btn-secondary btn-sm'
-                            ])
-                            @endcomponent
-                            {{-- <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/> --}}
-                            @component('exam::components.button-icon', [
-                                'type' => 'submit',
-                                'id' => 'submit',
-                                'text' => 'Simpan',
-                                'icon' => 'fa-paper-plane',
-                                'link' => 'exam.question-group.index',
-                                'class' => 'btn-success btn-sm'
-                            ])
-                            @endcomponent
-                            {{-- <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/> --}}
+                            <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/>
+                            <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/>
                         </div>
                     </div>
                 </form> 
@@ -118,8 +100,8 @@
                 <div class="float-right">
                     <div class="btn-group">
                         <div class="btn-group dropleft" role="group">
-                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Tambah soal</span>
+                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tambah soal
                             </button>
                             <div class="dropdown-menu">
                                 {{-- <a class="dropdown-item" data-toggle="modal" data-target="#modalBuatSoal" href="#">Buat soal baru</a> --}}
@@ -127,9 +109,6 @@
                                 <a class="dropdown-item" data-toggle="modal" data-target="#modalPilihSoal" href="#">Pilih dari bank soal</a>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm">
-                          Tambah soal
-                        </button>
                     </div>
                 </div>
             </div>
@@ -351,14 +330,14 @@
         for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
         e.preventDefault();
         $('#submit').prop('disabled', true);
-        // $('#submit').html("Submiting...");            
+        $('#submit').html("Submiting...");            
         $.ajax({
             url: $(this).attr('action'),
             type: $(this).attr('method'),
             data: $(this).serialize(),
             success: function (res){
                 $('#submit').prop('disabled', false);
-                // $('#submit').html("Submit");
+                $('#submit').html("Submit");
                 if(res.status){                        
                     window.location.href = "{{route('exam.question-group.index')}}";
                 }
@@ -487,13 +466,9 @@
                     $('#modalBody').append("<label>Pertanyaan</label>")
                     $('#modalBody').append("<textarea readonly id='previewSoal'>"+res.data.question_text+"</textarea>");
                     if(typeof(res.data.question_option) != "undefined" && res.data.question_option.length > 0) {
-                        table = "<label class='mt-3'>Jawaban</label><table class='table table-bordered table-sm table-preview'><thead><th style='width:1%%'>No</th><th style='width:90%; vertical-align:middle; text-align:center;'>Pilihan</th><th style='vertical-align:middle; text-align:center;'>Jawaban Benar</th></thead><tbody>";
+                        table = "<label class='mt-3'>Jawaban</label><table class='table table-bordered table-sm table-preview'><thead><th style='width:1%%'>No</th><th style='width:90%; vertical-align:middle; text-align:center;'>Pilihan</th><th style='vertical-align:middle; text-align:center;'>Bobot</th></thead><tbody>";
                         $.each(res.data.question_option, function(k,v){
-                            if(v.option_value == 100)
-                                icon = "<i class='fa fa-check'></i>";
-                            else
-                                icon = '';
-                            table += "<tr><td class='text-center'>"+(k+1)+"</td><td>"+v.option_text+"</td><td style='text-align:center;'>"+icon+"</td></tr>";
+                            table += "<tr><td class='text-center'>"+(k+1)+"</td><td>"+v.option_text+"</td><td style='text-align:center;'>"+v.option_value+"</td></tr>";
                             // $('#modalBody').append("<tr><td><textarea readonly id='option_"+k+"'>"+v.option_text+"</textarea></td><td>1</td></tr>")
                             // CKEDITOR.replace('option_'+k+'',{
                             //     toolbar: 'Custom', //makes all editors use this toolbar

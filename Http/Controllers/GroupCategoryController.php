@@ -134,7 +134,7 @@ class GroupCategoryController extends Controller
     }
 
     public function getData(){
-        $query = GroupCategory::all();
+        $query = GroupCategory::orderBy('type')->get();
         return DataTables::of($query)        
         ->addColumn('checkbox', function($data) {
             return "<input type='checkbox' name='colom[]' value='".$data->id."'>";

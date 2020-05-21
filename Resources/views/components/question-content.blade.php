@@ -52,18 +52,12 @@
                 <div class="col-md-8">
                     {!! $question->question_text !!}
                     @if ($question->type->type == "Essay")
-                        @component('exam::components.answer-essay')
-                        @endcomponent
-                        {{-- <x-exam-answer-essay/> --}}
+                        <x-exam-answer-essay/>
                     @else
                         @php
                             $options = $question->question_option()->get();
                         @endphp
-                        @component('exam::components.answer-option', [
-                            'options' => $options
-                        ])
-                        @endcomponent 
-                        {{-- <x-exam-answer-option :options="$options"/> --}}
+                        <x-exam-answer-option :options="$options"/>
                     @endif
                 </div>
             </div>

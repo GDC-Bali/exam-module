@@ -37,9 +37,5 @@
             </div>
         </div>
     </div>
-    @component('exam::components.question-numbers', [
-        'totalquestions' => $totalquestions
-    ])
-    @endcomponent 
-    {{-- <x-exam-question-numbers :totalquestions="$totalquestions"/> --}}
+    <x-exam-question-numbers :totalquestions="$totalquestions"/>
 </div>

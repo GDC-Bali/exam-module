@@ -143,7 +143,7 @@ class QuestionCategoryController extends Controller
     }
 
     public function getData(){
-        $query = QuestionCategory::all();
+        $query = QuestionCategory::orderBy('type')->get();
         return DataTables::of($query)        
         ->addColumn('checkbox', function($data) {
             return "<input type='checkbox' name='colom[]' value='".$data->id."'>";
