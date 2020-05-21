@@ -34,34 +34,34 @@
 <script>
     $(document).ready(function(){
         CKEDITOR.replace( 'desc' );
-        $('#form').on('submit', function(e){
-            for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
-            e.preventDefault();
-            $('#submit').prop('disabled', true);            
-            $.ajax({
-                url: $(this).attr('action'),
-                type: $(this).attr('method'),
-                data: $(this).serialize(),
-                success: function (res){
-                    if(res.status){
-                        $('#submit').prop('disabled', false);                        
-                        window.location.href = "{{route('exam.question-category.index')}}";
-                    }
-                },
-                error: function(err){
-                    $('#submit').prop('disabled', false);                    
-                    var response = JSON.parse(err.responseText);
-                    var errorString = '';
-                    $.each( response.message, function( key, value) {
-                        errorString += value + "<br>";
-                    });
-                    Swal.fire({
-                        icon: 'error',
-                        title: errorString,                        
-                    })
+    });
+    $('#form').unbind('submit').submit(function(e){
+        for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
+        e.preventDefault();
+        $('#submit').prop('disabled', true);            
+        $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function (res){
+                if(res.status){
+                    $('#submit').prop('disabled', false);                        
+                    window.location.href = "{{route('exam.question-category.index')}}";
                 }
-            }); 
-        });
+            },
+            error: function(err){
+                $('#submit').prop('disabled', false);                    
+                var response = JSON.parse(err.responseText);
+                var errorString = '';
+                $.each( response.message, function( key, value) {
+                    errorString += value + "<br>";
+                });
+                Swal.fire({
+                    icon: 'error',
+                    title: errorString,                        
+                })
+            }
+        }); 
     });
 </script>
 @endsection

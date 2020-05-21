@@ -32,37 +32,38 @@
 @section('script_exam')
 <script>
     $(document).ready(function(){    
-        $('#form').on('submit', function(e){
-            for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
-            e.preventDefault();
-            $('#submit').prop('disabled', true);
-            // $('#submit').html("Submiting...");            
-            $.ajax({
-                url: $(this).attr('action'),
-                type: $(this).attr('method'),
-                data: $(this).serialize(),
-                success: function (res){
-                    $('#submit').prop('disabled', false);
-                    // $('#submit').html("Submit");
-                    if(res.status){                        
-                        window.location.href = "{{route('exam.question-category.index')}}";
-                    }
-                },
-                error: function(err){
-                    $('#submit').prop('disabled', false);
-                    // $('#submit').html("Submit");
-                    var response = JSON.parse(err.responseText);
-                    var errorString = '';
-                    $.each( response.message, function( key, value) {
-                        errorString += value + "<br>";
-                    });
-                    Swal.fire({
-                        icon: 'error',
-                        title: errorString,                        
-                    })
+        
+    });
+    $('#form').unbind('submit').submit(function(e){
+        for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
+        e.preventDefault();
+        $('#submit').prop('disabled', true);
+        // $('#submit').html("Submiting...");            
+        $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function (res){
+                $('#submit').prop('disabled', false);
+                // $('#submit').html("Submit");
+                if(res.status){                        
+                    window.location.href = "{{route('exam.question-category.index')}}";
                 }
-            }); 
-        });
+            },
+            error: function(err){
+                $('#submit').prop('disabled', false);
+                // $('#submit').html("Submit");
+                var response = JSON.parse(err.responseText);
+                var errorString = '';
+                $.each( response.message, function( key, value) {
+                    errorString += value + "<br>";
+                });
+                Swal.fire({
+                    icon: 'error',
+                    title: errorString,                        
+                })
+            }
+        }); 
     });
 </script>
 @endsection

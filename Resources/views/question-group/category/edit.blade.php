@@ -27,34 +27,34 @@
 @section('script_exam')
 <script>
     $(document).ready(function(){
-        $('#form').on('submit', function(e){
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            $('#submit').prop('disabled', true);            
-            $.ajax({
-                url: $(this).attr('action'),
-                type: $(this).attr('method'),
-                data: $(this).serialize(),
-                success: function (res){
-                    if(res.status){
-                        $('#submit').prop('disabled', false);                        
-                        window.location.href = "{{route('exam.group-category.index')}}";
-                    }
-                },
-                error: function(err){
-                    $('#submit').prop('disabled', false);                    
-                    var response = JSON.parse(err.responseText);
-                    var errorString = '';
-                    $.each( response.message, function( key, value) {
-                        errorString += value + "<br>";
-                    });
-                    Swal.fire({
-                        icon: 'error',
-                        title: errorString,                        
-                    })
+    });
+    $('#form').unbind('submit').submit(function(e){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        $('#submit').prop('disabled', true);            
+        $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function (res){
+                if(res.status){
+                    $('#submit').prop('disabled', false);                        
+                    window.location.href = "{{route('exam.group-category.index')}}";
                 }
-            }); 
-        });
+            },
+            error: function(err){
+                $('#submit').prop('disabled', false);                    
+                var response = JSON.parse(err.responseText);
+                var errorString = '';
+                $.each( response.message, function( key, value) {
+                    errorString += value + "<br>";
+                });
+                Swal.fire({
+                    icon: 'error',
+                    title: errorString,                        
+                })
+            }
+        }); 
     });
 </script>
 @endsection
