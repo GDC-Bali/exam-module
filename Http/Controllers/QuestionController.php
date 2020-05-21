@@ -403,17 +403,20 @@ class QuestionController extends Controller
                 $file = $request->file('upload');
                 $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $filename = $filename.'_'.Carbon::now()->format('dmYHis').'.'.$file->getClientOriginalExtension();
-    
                 $destination = 'public/exam/images';
-    
-                if (!file_exists(storage_path($destination))) {
-                    Storage::makeDirectory($destination);
-                }
-    
-                $file->storeAs($destination, $filename);
-    
                 $ckeditor = $request->input('CKEditorFuncNum');
-                $url = asset('storage/exam/images').'/'.$filename;
+    
+                if(config('exam.gcs.active', false)){
+                    $disk = Storage::disk(config('exam.gcs.disk', 'gcs'))->put('exam/images', $file);
+                    $gcs = Storage::disk(config('exam.gcs.disk', 'gcs'));
+                    $url = $gcs->url($disk);
+                } else {
+                    if (!file_exists(storage_path($destination))) {
+                        Storage::makeDirectory($destination);
+                    }
+                    $file->storeAs($destination, $filename);
+                    $url = asset('storage/exam/images').'/'.$filename;
+                }
                 $msg = 'Image uploaded successfully';
     
                 $response = "<script>window.parent.CKEDITOR.tools.callFunction($ckeditor, '$url', '$msg')</script>";
@@ -432,20 +435,23 @@ class QuestionController extends Controller
             if($request->hasFile('upload')){
                 $file = $request->file('upload');
                 $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $filename = $filename.'_'.Carbon::now()->format('dmYHis').'.'.$file->getClientOriginalExtension();
-    
+                $filename = \Ramsey\Uuid\Uuid::uuid4().'.'.$file->getClientOriginalExtension();
                 $destination = 'public/exam/images';
-    
-                if (!file_exists(storage_path($destination))) {
-                    Storage::makeDirectory($destination);
-                }
-    
-                $file->storeAs($destination, $filename);
-    
                 $ckeditor = $request->input('CKEditorFuncNum');
-                $url = asset('storage/exam/images').'/'.$filename;
+
+                if(config('exam.gcs.active', false)){
+                    $disk = Storage::disk(config('exam.gcs.disk', 'gcs'))->put('exam/images', $file);
+                    $gcs = Storage::disk(config('exam.gcs.disk', 'gcs'));
+                    $url = $gcs->url($disk);
+                } else {
+                    if (!file_exists(storage_path($destination))) {
+                        Storage::makeDirectory($destination);
+                    }
+                    $file->storeAs($destination, $filename);
+                    $url = asset('storage/exam/images').'/'.$filename;
+                }
+                
                 $msg = 'Image uploaded successfully';
-    
                 $response = "<script>window.parent.CKEDITOR.tools.callFunction($ckeditor, '$url', '$msg')</script>";
     
                 @header('Content-type: text/html; charset=utf-8');

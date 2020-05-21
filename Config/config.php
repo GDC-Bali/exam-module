@@ -3,6 +3,10 @@
 return [
     'name' => 'Exam',
     'navbar-class' => 'bg-dark',
+    'gcs' => [
+        'active' => false,
+        'disk' => 'gcs',
+    ],
     'middleware' => [
         
     ],
