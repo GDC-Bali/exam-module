@@ -29,6 +29,7 @@
     $(document).ready(function(){
         $('#form').on('submit', function(e){
             e.preventDefault();
+            e.stopImmediatePropagation();
             $('#submit').prop('disabled', true);            
             $.ajax({
                 url: $(this).attr('action'),
