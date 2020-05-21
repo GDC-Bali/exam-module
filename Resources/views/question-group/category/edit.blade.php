@@ -55,6 +55,8 @@
                 })
             }
         }); 
+        $('#form').unbind('submit');
+        return false;
     });
 </script>
 @endsection
