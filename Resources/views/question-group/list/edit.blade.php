@@ -75,7 +75,7 @@
                     <div class="form-group row">
                         <label for="code" class="col-md-2 col-form-label">Kode Akses</label>
                         <div class="col-md-1">
-                            <input id="toogle-access-code" {{$data->access_code != null ? 'checked' : ''  }} type="checkbox" data-toggle="toggle" data-size="sm" data-on="Ya" data-off="Tidak" data-onstyle="success" data-offstyle="default">
+                            <input id="toggle-access-code" {{$data->access_code != null ? 'checked' : ''  }} type="checkbox" data-toggle="toggle" data-size="sm" data-on="Ya" data-off="Tidak" data-onstyle="success" data-offstyle="default">
                         </div>
                         <div class="col-md-9">
                             <input type="text" name="access_code" class="form-control form-control-sm" id="access_code" placeholder="Enter access code" value="{{$data->access_code}}" {{$data->access_code?'':'readonly'}}>
@@ -226,6 +226,14 @@
             width: 'resolve',
         });
         $("input[type='number']").inputSpinner();
+        $('#toggle-access-code').change(function() {
+            if($(this).is(':checked')){
+                $('#access_code').prop( "readonly", false);
+            } else {
+                $('#access_code').prop( "readonly", true);
+                $('#access_code').val('');
+            }
+        });
     });
 
     showQuestionList = function(){
@@ -506,15 +514,6 @@
                 })
             }
         }); 
-    });
-
-    $('#toogle-access-code').change(function() {
-        if($(this).is(':checked')){
-            $('#access_code').prop( "readonly", false);
-        } else {
-            $('#access_code').prop( "readonly", true);
-            $('#access_code').val('');
-        }
     });
 </script> 
 @endsection
