@@ -1,0 +1,192 @@
+/* component button icon */
+.btn-label {
+    position: relative;
+    left: -10px;
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 3px 0 0 3px;
+}
+.btn-labeled {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* component paket item */
+.callout.callout-success {
+    border-left-color: #1e7e34;
+}
+.callout {
+    border-radius: .25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+    background-color: #fff;
+    border-left: 10px solid #e9ecef;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.attempt-info-icon {
+    display:inline-block !important; 
+    vertical-align:top !important; 
+    font-size:16px !important; 
+    margin-top:5px !important;
+}
+
+.attempt-info-div {
+    display:inline-block;
+}
+
+.attempt-info-div label {
+    font-size: 14px; 
+    font-weight:bold;
+}
+
+.btn-primary-darker {
+    color: white;
+    background-color: #0284c0;
+    border-color: #0284c0;
+}
+a.btn-primary-darker:hover {
+    color: white;
+}
+
+.project .row {
+    background-color: white;
+    margin: 0;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.project div[class*='col-'] {
+    border-right: 1px solid #eee
+}
+
+.project .text h3 {
+    margin-bottom: 0;
+    color: #555
+}
+
+.project .text small {
+    color: #aaa;
+    font-size: 0.75em
+}
+
+.project .project-date span {
+    font-size: 0.9em;
+    color: #999
+}
+
+.project .image {
+    max-width: 50px;
+    min-width: 50px;
+    height: 50px;
+    margin-right: 15px
+}
+
+.project .time,
+.project .comments,
+.project .project-progress {
+    color: #999;
+    font-size: 0.9em;
+    margin-right: 20px
+}
+
+.project .time i,
+.project .comments i,
+.project .project-progress i {
+    margin-right: 5px
+}
+
+.project .project-progress {
+    width: 200px
+}
+
+.project .project-progress .progress {
+    height: 4px
+}
+
+.project .card {
+    margin-bottom: 0
+}
+
+@media (max-width: 991px) {
+    .project .right-col {
+        margin-top: 20px;
+        margin-left: 65px
+    }
+    .project .project-progress {
+        width: 150px
+    }
+}
+
+@media (max-width: 480px) {
+    .project .project-progress {
+        display: none
+    }
+}
+.has-shadow {
+    -webkit-box-shadow: 4px 4px 4px rgba(0,0,0,0.1), -1px 0 4px rgba(0,0,0,0.05);
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.1), -1px 0 4px rgba(0,0,0,0.05);
+}
+.bg-white {
+    background: #fff !important;
+}
+
+.bg-red {
+    background: #ff7676 !important;
+    color: #fff
+}
+
+.bg-red:hover {
+    color: #fff
+}
+
+.bg-blue {
+    background: #85b4f2 !important;
+    color: #fff
+}
+
+.bg-blue:hover {
+    color: #fff
+}
+
+.bg-yellow {
+    background: #eef157 !important;
+    color: #fff
+}
+
+.bg-yellow:hover {
+    color: #fff
+}
+
+.bg-green {
+    background: #54e69d !important;
+    color: #fff
+}
+
+.bg-green:hover {
+    color: #fff
+}
+
+.bg-orange {
+    background: #ffc36d !important;
+    color: #fff
+}
+
+.bg-orange:hover {
+    color: #fff
+}
+
+.bg-violet {
+    background: #796AEE !important;
+    color: #fff
+}
+
+.bg-violet:hover {
+    color: #fff
+}
+
+.bg-gray {
+    background: #ced4da !important
+}

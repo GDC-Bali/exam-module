@@ -1,0 +1,26 @@
+{
+    "name": "gdc-bali/exam-module",
+    "description": "",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "GDB Bali",
+            "email": "gdc.bali@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Exam\\Providers\\ExamServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Exam\\": ""
+        }
+    }
+}
