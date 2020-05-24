@@ -28,7 +28,7 @@ class Attempt extends Model
         self::creating(function ($model) {
             $model->id = (string) \Ramsey\Uuid\Uuid::uuid4();
             $model->start_at = date('Y-m-d H:i:s');
-            $model->status = self::STATUS_INITIALIZED;
+            $model->status = self::STATUS_STARTED;
         });
     }
 
