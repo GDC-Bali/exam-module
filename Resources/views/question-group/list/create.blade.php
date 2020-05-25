@@ -36,6 +36,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
+<<<<<<< HEAD
                         <label for="grade_formula" class="col-md-2 col-form-label">Tipe penilaian</label>
                         <div class="col-md-10">
                             <select name="grade_formula" id="grade_formula" class="form-control">
@@ -46,6 +47,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
+=======
+>>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                         <label for="code" class="col-md-2 col-form-label">Banyak Percobaan</label>
                         <div class="col-md-10">
                             <select name="attempt_allowed" id="attempt_allowed" class="form-control">
@@ -75,7 +78,11 @@
                             <input type="checkbox" name="availability" data-toggle="toggle" data-size="sm" data-on="Ya" data-off="Tidak" data-onstyle="success" data-offstyle="default">
                             <small id="availabilityHelp" class="form-text text-muted">Apakah paket soal ini dapat dilihat juga oleh user lain?</small>
                         </div>
+<<<<<<< HEAD
                     </div>                    
+=======
+                    </div>
+>>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                     <div class="form-group row">
                         <label for="code" class="col-md-2 col-form-label">Kode Akses</label>
                         <div class="col-md-1">
@@ -88,6 +95,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-10 offset-md-2">
+<<<<<<< HEAD
                             @component('exam::components.button-icon', [
                                 'type' => 'a',
                                 'id' => '',
@@ -108,6 +116,10 @@
                             ])
                             @endcomponent
                             {{-- <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/> --}}
+=======
+                            <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/>
+                            <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/>
+>>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                         </div>
                     </div>
                 </form>   
@@ -123,11 +135,14 @@
             placeholder : 'Select Category',
             width: 'resolve',
         });
+<<<<<<< HEAD
         $('#grade_formula').select2({
             allowClear : true,
             placeholder : 'Select Grade Formula',
             width: 'resolve',
         });
+=======
+>>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
         $('#attempt_allowed').select2({
             allowClear : true,
             width: 'resolve',

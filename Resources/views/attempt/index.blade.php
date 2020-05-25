@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+=======
+{{-- @extends('exam::layouts.attempt')
+
+@section('content')      
+<div class="row my-5">
+    <div class="col-md-8 offset-md-2">
+        <div class="float-left">                    
+            <button id="delete" class="btn btn-secondary mg-5 mr-2"><i class="typcn typcn-arrow-unsorted"></i> Sort</button>                    
+        </div>
+        <div class="float-left">
+            <a href="{{route('exam.question-type.create')}}">
+                <button class="btn btn-secondary mg-5 mr-2"><i class="typcn typcn-filter"></i> Filter</button>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-8 offset-md-2 pt-3 mb-5">
+        @foreach ($groups as $group)
+            <x-exam-paket-item :group="$group"/>
+        @endforeach
+    </div><!-- col -->
+</div><!-- row -->
+@endsection --}}
+
+>>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
 @extends('exam::layouts.master')
 
 @section('content_exam')
@@ -33,6 +58,15 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
+=======
+                {{-- <div class="float-left">    
+                    <x-exam-button-icon type="button" id="delete" text="Hapus" icon="fa-trash" link="" class="btn-danger mg-5 btn-sm"/>                                   
+                </div> --}}
+                {{-- <div class="float-right">
+                    <x-exam-button-icon type="a" id="add" text="Tambah" icon="fa-plus" :link="route('question-category.create')" class="btn-primary mg-5 btn-sm"/>
+                </div> --}}
+>>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
             </div>
             <div class="col-sm-12 col-xl-12 mt-3">
                 <div class="table-responsive">

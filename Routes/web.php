@@ -55,6 +55,7 @@ Route::middleware(config('exam.middleware', []))->prefix('exam')->name('exam.')-
     Route::resource('/questions', 'QuestionController');
     Route::post('/questions/multiple_delete','QuestionController@multiple_delete')->name('questions.multipledelete');
     Route::post('/questions/image_upload','QuestionController@image_upload')->name('questions.image_upload');
+    Route::post('/questions/image_upload_drop','QuestionController@image_upload_drop')->name('questions.image_upload_drop');
     Route::get('/getdata-questions', 'QuestionController@getData')->name('questions.getdata'); 
     Route::get('/getdata-questionsbank', 'QuestionController@getDataBank')->name('questions.getbank'); 
     Route::get('/getdata-getdetailquestion/{id}', 'QuestionController@getDetailQuestion')->name('questions.getDetailQuestion'); 

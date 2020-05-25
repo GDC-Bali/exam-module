@@ -57,6 +57,7 @@
     <div class="col-md-12 pt-3 mb-5">
         <div class="row">
             <div class="col-md-8">
+<<<<<<< HEAD
                 @component('exam::components.attempt-review-info', [
                     'type' => $type,
                     'hasil' => $hasil,
@@ -76,6 +77,12 @@
             ])
             @endcomponent        
             {{-- <x-exam-attempt-review-number :hasil="$hasil"/> --}}
+=======
+                <x-exam-attempt-review-info :type='$type' :hasil='$hasil' :attempt='$attempt'/>
+                <x-exam-attempt-review-content :attempt="$attempt" :group='$group'/>
+            </div>            
+            <x-exam-attempt-review-number :hasil="$hasil"/>
+>>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
         </div>        
     </div>
 </div>

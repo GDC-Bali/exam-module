@@ -37,9 +37,13 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     @component('exam::components.question-numbers', [
         'totalquestions' => $totalquestions
     ])
     @endcomponent 
     {{-- <x-exam-question-numbers :totalquestions="$totalquestions"/> --}}
+=======
+    <x-exam-question-numbers :totalquestions="$totalquestions"/>
+>>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
 </div>

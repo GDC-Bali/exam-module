@@ -30,7 +30,7 @@ class QuestionController extends Controller
     public function index()
     {
         $tipe = QuestionType::all();
-        $category = QuestionCategory::all();
+        $category = QuestionCategory::orderBy('type')->get();
         return view('exam::questions.index',compact(['tipe','category']));
     }
 
@@ -41,7 +41,7 @@ class QuestionController extends Controller
     public function create()
     {
         $tipe = QuestionType::all();
-        $category = QuestionCategory::all();
+        $category = QuestionCategory::orderBy('type')->get();
         return view('exam::questions.create', compact(['tipe','category']));
     }
 
@@ -51,28 +51,43 @@ class QuestionController extends Controller
      * @return Response
      */
     public function store(Request $request)
-    {        
+    {      
+        $messages = [
+            'code.required' => 'Kode soal tidak boleh kosong',
+            'question_type_id.required' => 'Tipe pertanyaan belum dipilih',
+            'question_category_id.required' => 'Kategori soal belum dipilih',
+            'question_text.required' => 'Pertanyaan tidak boleh kosong',
+            'feedback.required' => 'Harap mengisi pembahasan soal, jika tidak ada bisa diisi dengan "-"',
+        ];  
         $validator = Validator::make($request->input(), array(
             "code"                => 'required',
-            "competencies"        => 'required',
             "question_type_id"    => 'required',
             "question_category_id"=> 'required',
             "question_text"       => 'required',
-            // "additional_note"     => 'required',
             "feedback"            => 'required',
-        ));
-
+        ), $messages);
+        $sum = array_sum($request->option_value);
         if ($validator->fails()) {
             return response()->json([
                 'message'   => $validator->errors(),
                 'status'    => false
             ], 400);
+        }else if($sum == 0){
+            $data['message'] = 'Minimal 1 nilai bobot pada jawaban harus lebih dari 0';
+            return response()->json([
+                'message'   => $data,
+                'status'    => false
+            ], 400);            
         }
         
         try {
             DB::beginTransaction();
 
             $data = $request->except('_token','option_value','option_text','radio');
+
+            if($data['competencies'] == null){
+                $data['competencies'] = '';
+            }
 
             if(!isset($data['randomize_option'])){
                 $data['randomize_option'] = 0;
@@ -157,7 +172,7 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $tipe = QuestionType::all();
-        $category = QuestionCategory::all();
+        $category = QuestionCategory::orderBy('type')->get();
         $data = Question::with(['question_option'])->find($id);        
         return view('exam::questions.edit', compact(['tipe','category','data']));
     }
@@ -170,16 +185,20 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'code.required' => 'Kode soal tidak boleh kosong',
+            'question_type_id.required' => 'Tipe pertanyaan belum dipilih',
+            'question_category_id.required' => 'Kategori soal belum dipilih',
+            'question_text.required' => 'Pertanyaan tidak boleh kosong',
+            'feedback.required' => 'Harap mengisi pembahasan soal, jika tidak ada bisa diisi dengan "-"',
+        ];
         $validator = Validator::make($request->input(), array(
             "code"                => 'required',
-            "competencies"        => 'required',
             "question_type_id"    => 'required',
             "question_category_id"=> 'required',
             "question_text"       => 'required',
-            // "additional_note"     => 'required',
             "feedback"            => 'required',
-        ));
+        ), $messages);
 
         if ($validator->fails()) {
             return response()->json([
@@ -192,6 +211,10 @@ class QuestionController extends Controller
             DB::beginTransaction();
 
             $data = $request->except('_token','option_value','option_text','radio','_method');
+
+            if($data['competencies'] == null){
+                $data['competencies'] = '';
+            }
 
             if(!isset($data['randomize_option'])){
                 $data['randomize_option'] = 0;
@@ -375,29 +398,62 @@ class QuestionController extends Controller
     }
 
     public function image_upload(Request $request){
-        if($request->hasFile('upload')){
-            $file = $request->file('upload');
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $filename = $filename.'_'.Carbon::now()->format('dmYHis').'.'.$file->getClientOriginalExtension();
+        try {
+            if($request->hasFile('upload')){
+                $file = $request->file('upload');
+                $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $filename = $filename.'_'.Carbon::now()->format('dmYHis').'.'.$file->getClientOriginalExtension();
+    
+                $destination = 'public/exam/images';
+    
+                if (!file_exists(storage_path($destination))) {
+                    Storage::makeDirectory($destination);
+                }
+    
+                $file->storeAs($destination, $filename);
+    
+                $ckeditor = $request->input('CKEditorFuncNum');
+                $url = asset('storage/exam/images').'/'.$filename;
+                $msg = 'Image uploaded successfully';
+    
+                $response = "<script>window.parent.CKEDITOR.tools.callFunction($ckeditor, '$url', '$msg')</script>";
+    
+                @header('Content-type: text/html; charset=utf-8');
 
-            $destination = 'public/exam/images';
-
-            if (!file_exists(storage_path($destination))) {
-                Storage::makeDirectory($destination);
+                return $response;
             }
+        } catch (\Throwable $th) {
+            return response()->json(['message'=> $th->getMessage()]);
+        }
+    }
 
-            $file->storeAs($destination, $filename);
+    public function image_upload_drop(Request $request){
+        try {
+            if($request->hasFile('upload')){
+                $file = $request->file('upload');
+                $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $filename = $filename.'_'.Carbon::now()->format('dmYHis').'.'.$file->getClientOriginalExtension();
+    
+                $destination = 'public/exam/images';
+    
+                if (!file_exists(storage_path($destination))) {
+                    Storage::makeDirectory($destination);
+                }
+    
+                $file->storeAs($destination, $filename);
+    
+                $ckeditor = $request->input('CKEditorFuncNum');
+                $url = asset('storage/exam/images').'/'.$filename;
+                $msg = 'Image uploaded successfully';
+    
+                $response = "<script>window.parent.CKEDITOR.tools.callFunction($ckeditor, '$url', '$msg')</script>";
+    
+                @header('Content-type: text/html; charset=utf-8');
 
-            $ckeditor = $request->input('CKEditorFuncNum');
-            $url = asset('storage/exam/images').'/'.$filename;
-            $msg = 'Image uploaded successfully';
-
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($ckeditor, '$url', '$msg')</script>";
-
-            @header('Content-type: text/html; charset=utf-8');
-
-            return $response;
-
+                return response()->json(['uploaded' => 1, 'fileName' => $filename, 'url' => $url]);                
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['message'=> $th->getMessage()]);
         }
     }
 }

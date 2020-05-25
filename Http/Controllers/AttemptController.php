@@ -278,7 +278,7 @@ class AttemptController extends Controller
             }            
         }else{            
             foreach($attempt->answer as $answer){            
-                if($answer->point == 100)
+                if($answer->point > 0)
                     $hasil['benar']++;
             }            
         }
@@ -309,7 +309,7 @@ class AttemptController extends Controller
             }
         }else{            
             foreach($attempt->answer as $answer){            
-                if($answer->point == 100)
+                if($answer->point > 0)
                     $hasil['benar']++;
             }            
         }
@@ -342,7 +342,7 @@ class AttemptController extends Controller
                 if($val->point == null)
                     $hasil['no'][$key+1] = 0;
                 else{            
-                    if($val->point == 100)
+                    if($val->point > 0)
                         $hasil['no'][$key+1] = 1;
                     else if($val->point == 0)
                         $hasil['no'][$key+1] = -1;

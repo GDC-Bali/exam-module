@@ -24,7 +24,7 @@ class QuestionGroupController extends Controller
      */
     public function index()
     {
-        $data['categories'] = GroupCategory::all();
+        $data['categories'] = GroupCategory::orderBy('type')->get();
         return view('exam::question-group.list.index', $data);
     }
 
@@ -34,7 +34,7 @@ class QuestionGroupController extends Controller
      */
     public function create()
     {
-        $category = GroupCategory::all();
+        $category = GroupCategory::orderBy('type')->get();
         return view('exam::question-group.list.create', compact(['category']));
     }
 
@@ -50,7 +50,6 @@ class QuestionGroupController extends Controller
             "code"                => 'required',
             "category_id"         => 'required',
             "question_per_page"   => 'required',
-            "grade_formula"       => 'required',
             // "randomize_no"        => 'required',
             // "availability"           => 'required',
         ));
@@ -105,7 +104,7 @@ class QuestionGroupController extends Controller
      */
     public function edit($id)
     {
-        $category = GroupCategory::all();
+        $category = GroupCategory::orderBy('type')->get();
         $data = QuestionGroup::find($id);
         return view('exam::question-group.list.edit', compact(['category','data']));
     }
@@ -124,7 +123,6 @@ class QuestionGroupController extends Controller
             "code"                => 'required',
             "category_id"         => 'required',
             "question_per_page"   => 'required',
-            "grade_formula"       => 'required',
             // "randomize_no"        => 'required',
             // "availability"           => 'required',
         ));
@@ -231,7 +229,9 @@ class QuestionGroupController extends Controller
         $filter_keyword = $request->get('keyword', '');
         $filter_kategori = $request->get('kategori', null);
 
-        $query = QuestionGroup::with(['category'])->where(DB::raw("CONCAT(`group_name`, ' ', `desc`, ' ', `code`)"), 'LIKE', "%".$filter_keyword."%");
+        $query = QuestionGroup::with(['category'])
+                                ->where(DB::raw("CONCAT(`group_name`, ' ', `desc`, ' ', `code`)"), 'LIKE', "%".$filter_keyword."%")
+                                ->orderBy('group_name');
         if($filter_kategori){
             $query = $query->where('category_id', $filter_kategori);
         }       
