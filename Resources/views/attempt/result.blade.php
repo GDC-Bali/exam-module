@@ -12,7 +12,11 @@
                     @if($type == 'Essay')
                         <div class="h2 font-weight-bold">{{number_format($attempt->grade,0)}}</div>
                     @else
+                        @if($attempt->group->grade_formula == 1)
                         <div class="h2 font-weight-bold">{{number_format($attempt->grade,0)}}/100</div>
+                        @elseif($attempt->group->grade_formula == 2)
+                        <div class="h2 font-weight-bold">{{number_format($attempt->grade,0)}}</div>
+                        @endif
                     @endif
                 </div>
             </div>

@@ -4,37 +4,11 @@
     <div class="card p-3">        
         <div class="row">
             <div class="col-12">
-<<<<<<< HEAD
-                <div class="float-left"> 
-                    @component('exam::components.button-icon', [
-                        'type' => 'button',
-                        'id' => 'delete',
-                        'text' => 'Hapus',
-                        'icon' => 'fa-trash',
-                        'link' => '',
-                        'class' => 'btn-danger mg-5 btn-sm'
-                    ])
-                    @endcomponent   
-                    {{-- <x-exam-button-icon type="button" id="delete" text="Hapus" icon="fa-trash" link="" class="btn-danger mg-5 btn-sm"/>                                    --}}
-                </div>
-                <div class="float-right">
-                    @component('exam::components.button-icon', [
-                        'type' => 'a',
-                        'id' => 'add',
-                        'text' => 'Tambah',
-                        'icon' => 'fa-plus',
-                        'link' => 'exam.question-category.create',
-                        'class' => 'btn-primary mg-5 btn-sm'
-                    ])
-                    @endcomponent
-                    {{-- <x-exam-button-icon type="a" id="add" text="Tambah" icon="fa-plus" :link="route('exam.question-category.create')" class="btn-primary mg-5 btn-sm"/> --}}
-=======
                 <div class="float-left">    
                     <x-exam-button-icon type="button" id="delete" text="Hapus" icon="fa-trash" link="" class="btn-danger mg-5 btn-sm"/>                                   
                 </div>
                 <div class="float-right">
                     <x-exam-button-icon type="a" id="add" text="Tambah" icon="fa-plus" :link="route('exam.question-category.create')" class="btn-primary mg-5 btn-sm"/>
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                 </div>
             </div>
             <div class="col-sm-12 col-xl-12 mt-3">

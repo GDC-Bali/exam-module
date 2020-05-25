@@ -46,11 +46,7 @@
     {{-- <script src="{{ Module::asset('exam:lib/jquery/jquery.min.js') }}"></script> --}}
     {{-- <script src="{{ Module::asset('exam:lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
     @if (config('exam.plugins.ionicons'))
-<<<<<<< HEAD
-    <script src="{{ Module::asset('exam:lib/ionicons/ionicons.js') }}"></script>
-=======
     <script src="{{ Module::asset('exam:lib/ionicons/ionicons.js') }}" defer></script>
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
     @endif
 
 
@@ -59,36 +55,6 @@
     <script src="{{ Module::asset('exam:lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 
     @if (config('exam.plugins.datatables'))
-<<<<<<< HEAD
-    <script src="{{ Module::asset('exam:lib/datatables/DataTables-1.10.20/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ Module::asset('exam:lib/datatables/DataTables-1.10.20/js/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ Module::asset('exam:lib/datatables/Responsive-2.2.3/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ Module::asset('exam:lib/datatables/Responsive-2.2.3/js/responsive.bootstrap4.min.js') }}"></script>
-    @endif
-
-    @if (config('exam.plugins.icheck'))
-    <script src="{{ Module::asset('exam:lib/icheck/icheck.js') }}"></script>
-    @endif
-
-    @if (config('exam.plugins.bootstrap4-toggle'))
-    <script src="{{ Module::asset('exam:lib/bootstrap4-toggle/js/bootstrap4-toggle.min.js') }}"></script>
-    @endif
-
-    @if (config('exam.plugins.sweetalert2'))
-    <script src="{{ Module::asset('exam:lib/sweetalert/dist/sweetalert2.all.min.js') }}"></script>
-    @endif
-
-    @if (config('exam.plugins.select2'))
-    <script src="{{ Module::asset('exam:lib/select2/js/select2.full.min.js') }}"></script>
-    @endif
-
-    @if (config('exam.plugins.smartwizard'))
-    <script src="{{ Module::asset('exam:lib/smartwizard/js/jquery.smartWizard.min.js') }}"></script>
-    @endif
-    
-    <script src="{{ Module::asset('exam:lib/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ Module::asset('exam:lib/input-spinner/input-spinner.js') }}"></script>
-=======
     <script src="{{ Module::asset('exam:lib/datatables/DataTables-1.10.20/js/jquery.dataTables.min.js') }}" defer></script>
     <script src="{{ Module::asset('exam:lib/datatables/DataTables-1.10.20/js/dataTables.bootstrap4.js') }}" defer></script>
     <script src="{{ Module::asset('exam:lib/datatables/Responsive-2.2.3/js/dataTables.responsive.min.js') }}" defer></script>
@@ -117,6 +83,5 @@
     
     <script src="{{ Module::asset('exam:lib/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ Module::asset('exam:lib/input-spinner/input-spinner.js') }}" defer></script>
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
     @yield('script_exam')
 @stop

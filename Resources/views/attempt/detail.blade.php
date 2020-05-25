@@ -8,64 +8,21 @@
             <div class="row mt-4">
                 @if ($from)   
                 <div class="col d-flex justify-content-center">
-<<<<<<< HEAD
-                    @component('exam::components.info-item', [
-                        'label' => 'Ujian ini dimulai pada',
-                        'text' => $from,
-                        'icon' => 'fa-clock',
-                        'class' => 'text-success my-auto'
-                    ])
-                    @endcomponent
-                    {{-- <x-exam-info-item label="Ujian ini dimulai pada" :text="$from" icon="fa-clock" class="text-success my-auto"/> --}}
-=======
                     <x-exam-info-item label="Ujian ini dimulai pada" :text="$from" icon="fa-clock" class="text-success my-auto"/>
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                 </div>
                 @endif
                 @if ($to)   
                 <div class="col d-flex justify-content-center">
-<<<<<<< HEAD
-                    @component('exam::components.info-item', [
-                        'label' => 'Ujian ini berakhir pada',
-                        'text' => $to,
-                        'icon' => 'fa-clock',
-                        'class' => 'text-success my-auto'
-                    ])
-                    @endcomponent
-                    {{-- <x-exam-info-item label="Ujian ini berakhir pada" :text="$from" icon="fa-clock" class="text-danger my-auto"/> --}}
-=======
                     <x-exam-info-item label="Ujian ini berakhir pada" :text="$to" icon="fa-clock" class="text-danger my-auto"/>
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                 </div>
                 @endif
             </div>
             <div class="row mt-4">
                 <div class="col d-flex justify-content-center">
-<<<<<<< HEAD
-                    @component('exam::components.info-item', [
-                        'label' => 'Durasi',
-                        'text' => $attempt->duration?$attempt->duration." menit":"-",
-                        'icon' => 'fa-stopwatch',
-                        'class' => 'text-warning my-auto'
-                    ])
-                    @endcomponent
-                    {{-- <x-exam-info-item label="Durasi" :text="$attempt->duration.' menit'" icon="fa-stopwatch" class="text-warning my-auto"/> --}}
-                </div>
-                <div class="col d-flex justify-content-center">
-                    @component('exam::components.info-item', [
-                        'label' => 'Jumlah Soal',
-                        'text' => $group->questions_no(),
-                        'icon' => 'fa-pencil-alt',
-                        'class' => 'text-info my-auto'
-                    ])
-                    @endcomponent
-                    {{-- <x-exam-info-item label="Jumlah soal" :text="$group->questions_no()" icon="fa-pencil-alt" class="text-info my-auto"/> --}}
-=======
                     <x-exam-info-item label="Durasi" :text="$attempt->duration.' menit'" icon="fa-stopwatch" class="text-warning my-auto"/>
                 </div>
                 <div class="col d-flex justify-content-center">
                     <x-exam-info-item label="Jumlah soal" :text="$group->questions_no()" icon="fa-pencil-alt" class="text-info my-auto"/>
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                 </div>
             </div>
             <div class="mt-2">

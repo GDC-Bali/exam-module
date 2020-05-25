@@ -42,19 +42,16 @@
                         </div>
                     </div>
                     <div class="form-group row">
-<<<<<<< HEAD
                         <label for="grade_formula" class="col-md-2 col-form-label">Tipe penilaian</label>
                         <div class="col-md-10">
                             <select name="grade_formula" id="grade_formula" class="form-control">
                                 <option hidden value=""></option>
-                                <option {{ $data->grade_formula == 1 ? 'selected' : '' }} value="1">Rata = rata</option>
+                                <option {{ $data->grade_formula == 1 ? 'selected' : '' }} value="1">Rata - rata</option>
                                 <option {{ $data->grade_formula == 2 ? 'selected' : '' }} value="2">Akumulasi</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
-=======
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                         <label for="code" class="col-md-2 col-form-label">Banyak Percobaan</label>
                         <div class="col-md-10">
                             <select name="attempt_allowed" id="attempt_allowed" class="form-control">
@@ -97,31 +94,8 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-10 offset-md-2">
-<<<<<<< HEAD
-                            @component('exam::components.button-icon', [
-                                'type' => 'a',
-                                'id' => '',
-                                'text' => 'Kembali',
-                                'icon' => 'fa-chevron-circle-left',
-                                'link' => 'exam.question-group.index',
-                                'class' => 'btn-secondary btn-sm'
-                            ])
-                            @endcomponent
-                            {{-- <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/> --}}
-                            @component('exam::components.button-icon', [
-                                'type' => 'submit',
-                                'id' => 'submit',
-                                'text' => 'Simpan',
-                                'icon' => 'fa-paper-plane',
-                                'link' => 'exam.question-group.index',
-                                'class' => 'btn-success btn-sm'
-                            ])
-                            @endcomponent
-                            {{-- <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/> --}}
-=======
                             <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/>
                             <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/>
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                         </div>
                     </div>
                 </form> 
@@ -136,13 +110,8 @@
                 <div class="float-right">
                     <div class="btn-group">
                         <div class="btn-group dropleft" role="group">
-<<<<<<< HEAD
-                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Tambah soal</span>
-=======
                             <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tambah soal
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                             </button>
                             <div class="dropdown-menu">
                                 {{-- <a class="dropdown-item" data-toggle="modal" data-target="#modalBuatSoal" href="#">Buat soal baru</a> --}}
@@ -150,12 +119,6 @@
                                 <a class="dropdown-item" data-toggle="modal" data-target="#modalPilihSoal" href="#">Pilih dari bank soal</a>
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <button type="button" class="btn btn-primary btn-sm">
-                          Tambah soal
-                        </button>
-=======
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                     </div>
                 </div>
             </div>
@@ -264,14 +227,11 @@
             placeholder : 'Select Category',
             width: 'resolve',
         });
-<<<<<<< HEAD
         $('#grade_formula').select2({
             allowClear : true,
             placeholder : 'Select Grade Formula',
             width: 'resolve',
         });
-=======
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
         var tableSelectQuestion;
         var tableQuestion;
         showQuestionList();
@@ -385,29 +345,21 @@
         for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
         e.preventDefault();
         $('#submit').prop('disabled', true);
-<<<<<<< HEAD
         // $('#submit').html("Submiting...");            
-=======
-        $('#submit').html("Submiting...");            
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
         $.ajax({
             url: $(this).attr('action'),
             type: $(this).attr('method'),
             data: $(this).serialize(),
             success: function (res){
                 $('#submit').prop('disabled', false);
-<<<<<<< HEAD
                 // $('#submit').html("Submit");
-=======
-                $('#submit').html("Submit");
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                 if(res.status){                        
                     window.location.href = "{{route('exam.question-group.index')}}";
                 }
             },
             error: function(err){
                 $('#submit').prop('disabled', false);
-                $('#submit').html("Submit");
+                // $('#submit').html("Submit");
                 var response = JSON.parse(err.responseText);
                 var errorString = '';
                 $.each( response.message, function( key, value) {
@@ -529,19 +481,9 @@
                     $('#modalBody').append("<label>Pertanyaan</label>")
                     $('#modalBody').append("<textarea readonly id='previewSoal'>"+res.data.question_text+"</textarea>");
                     if(typeof(res.data.question_option) != "undefined" && res.data.question_option.length > 0) {
-<<<<<<< HEAD
-                        table = "<label class='mt-3'>Jawaban</label><table class='table table-bordered table-sm table-preview'><thead><th style='width:1%%'>No</th><th style='width:90%; vertical-align:middle; text-align:center;'>Pilihan</th><th style='vertical-align:middle; text-align:center;'>Jawaban Benar</th></thead><tbody>";
-                        $.each(res.data.question_option, function(k,v){
-                            if(v.option_value == 100)
-                                icon = "<i class='fa fa-check'></i>";
-                            else
-                                icon = '';
-                            table += "<tr><td class='text-center'>"+(k+1)+"</td><td>"+v.option_text+"</td><td style='text-align:center;'>"+icon+"</td></tr>";
-=======
                         table = "<label class='mt-3'>Jawaban</label><table class='table table-bordered table-sm table-preview'><thead><th style='width:1%%'>No</th><th style='width:90%; vertical-align:middle; text-align:center;'>Pilihan</th><th style='vertical-align:middle; text-align:center;'>Bobot</th></thead><tbody>";
                         $.each(res.data.question_option, function(k,v){
                             table += "<tr><td class='text-center'>"+(k+1)+"</td><td>"+v.option_text+"</td><td style='text-align:center;'>"+v.option_value+"</td></tr>";
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                             // $('#modalBody').append("<tr><td><textarea readonly id='option_"+k+"'>"+v.option_text+"</textarea></td><td>1</td></tr>")
                             // CKEDITOR.replace('option_'+k+'',{
                             //     toolbar: 'Custom', //makes all editors use this toolbar

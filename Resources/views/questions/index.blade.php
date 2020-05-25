@@ -36,37 +36,11 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-                <div class="float-left">      
-                    @component('exam::components.button-icon', [
-                        'type' => 'button',
-                        'id' => 'delete',
-                        'text' => 'Hapus',
-                        'icon' => 'fa-trash',
-                        'link' => '',
-                        'class' => 'btn-danger mg-5 btn-sm'
-                    ])
-                    @endcomponent              
-                    {{-- <x-exam-button-icon type="button" id="delete" text="Hapus" icon="fa-trash" link="" class="btn-danger mg-5 btn-sm"/>                   --}}
-                </div>
-                <div class="float-right">
-                    @component('exam::components.button-icon', [
-                        'type' => 'a',
-                        'id' => 'add',
-                        'text' => 'Tambah',
-                        'icon' => 'fa-plus',
-                        'link' => 'exam.questions.create',
-                        'class' => 'btn-primary mg-5 btn-sm'
-                    ])
-                    @endcomponent
-                    {{-- <x-exam-button-icon type="a" id="delete" text="Tambah" icon="fa-plus" :link="route('exam.questions.create')" class="btn-primary mg-5 btn-sm"/> --}}
-=======
                 <div class="float-left">                    
                     <x-exam-button-icon type="button" id="delete" text="Hapus" icon="fa-trash" link="" class="btn-danger mg-5 btn-sm"/>                  
                 </div>
                 <div class="float-right">
                     <x-exam-button-icon type="a" id="delete" text="Tambah" icon="fa-plus" :link="route('exam.questions.create')" class="btn-primary mg-5 btn-sm"/>
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                 </div>
             </div>
             <div class="col-sm-12 col-xl-12 mt-3">
@@ -117,14 +91,11 @@
     $(document).ready(function(){        
         var table;
         showData();
-<<<<<<< HEAD
-=======
         $('#filter-kategori').select2({
             allowClear : true,
             placeholder : 'Semua Kategori',
             width: 'resolve',
         });
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
     });
 
     $('#table-bank-soal tbody').on( 'click', 'tr td:not(:first-child, :last-child)', function () {                  
@@ -239,19 +210,9 @@
                     $('#modalBody').append("<label>Pertanyaan</label>")
                     $('#modalBody').append("<textarea readonly id='previewSoal'>"+res.data.question_text+"</textarea>");
                     if(typeof(res.data.question_option) != "undefined" && res.data.question_option.length > 0) {
-<<<<<<< HEAD
-                        table = "<label class='mt-3'>Jawaban</label><table class='table table-bordered table-sm table-preview'><thead><th style='width:1%%'>No</th><th style='width:90%; vertical-align:middle; text-align:center;'>Pilihan</th><th style='vertical-align:middle; text-align:center;'>Jawaban Benar</th></thead><tbody>";
-                        $.each(res.data.question_option, function(k,v){
-                            if(v.option_value == 100)
-                                icon = "<i class='fa fa-check'></i>";
-                            else
-                                icon = '';
-                            table += "<tr><td class='text-center'>"+(k+1)+"</td><td>"+v.option_text+"</td><td style='text-align:center;'>"+icon+"</td></tr>";
-=======
                         table = "<label class='mt-3'>Jawaban</label><table class='table table-bordered table-sm table-preview'><thead><th style='width:1%%'>No</th><th style='width:90%; vertical-align:middle; text-align:center;'>Pilihan</th><th style='vertical-align:middle; text-align:center;'>Bobot</th></thead><tbody>";
                         $.each(res.data.question_option, function(k,v){                            
                             table += "<tr><td class='text-center'>"+(k+1)+"</td><td>"+v.option_text+"</td><td style='text-align:center;'>"+v.option_value+"</td></tr>";
->>>>>>> 8ba76e70022cef1a869f10e628614facb6b5eea1
                             // $('#modalBody').append("<tr><td><textarea readonly id='option_"+k+"'>"+v.option_text+"</textarea></td><td>1</td></tr>")
                             // CKEDITOR.replace('option_'+k+'',{
                             //     toolbar: 'Custom', //makes all editors use this toolbar
