@@ -30,17 +30,6 @@ class ExamServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
-        Blade::component('exam-button-icon', \Modules\Exam\Components\ButtonIcon::class);
-        Blade::component('exam-paket-item', \Modules\Exam\Components\PaketItem::class);
-        Blade::component('exam-info-item', \Modules\Exam\Components\InfoItem::class);
-        Blade::component('exam-question-info', \Modules\Exam\Components\QuestionInfo::class);
-        Blade::component('exam-question-content', \Modules\Exam\Components\QuestionContent::class);
-        Blade::component('exam-question-numbers', \Modules\Exam\Components\QuestionNumbers::class);
-        Blade::component('exam-answer-option', \Modules\Exam\Components\AnswerOption::class);
-        Blade::component('exam-answer-essay', \Modules\Exam\Components\AnswerEssay::class);
-        Blade::component('exam-attempt-review-info', \Modules\Exam\Components\AttemptReviewInfo::class);
-        Blade::component('exam-attempt-review-content', \Modules\Exam\Components\AttemptReviewContent::class);
-        Blade::component('exam-attempt-review-number', \Modules\Exam\Components\AttemptReviewNumber::class);
     }
 
     /**

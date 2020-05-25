@@ -57,10 +57,25 @@
     <div class="col-md-12 pt-3 mb-5">
         <div class="row">
             <div class="col-md-8">
-                <x-exam-attempt-review-info :type='$type' :hasil='$hasil' :attempt='$attempt'/>
-                <x-exam-attempt-review-content :attempt="$attempt" :group='$group'/>
-            </div>            
-            <x-exam-attempt-review-number :hasil="$hasil"/>
+                @component('exam::components.attempt-review-info', [
+                    'type' => $type,
+                    'hasil' => $hasil,
+                    'attempt' => $attempt
+                ])
+                @endcomponent
+                @component('exam::components.attempt-review-content', [
+                    'group' => $group,
+                    'attempt' => $attempt
+                ])
+                @endcomponent
+                {{-- <x-exam-attempt-review-info :type='$type' :hasil='$hasil' :attempt='$attempt'/> --}}
+                {{-- <x-exam-attempt-review-content :attempt="$attempt" :group='$group'/> --}}
+            </div>    
+            @component('exam::components.attempt-review-number', [
+                'hasil' => $hasil
+            ])
+            @endcomponent        
+            {{-- <x-exam-attempt-review-number :hasil="$hasil"/> --}}
         </div>        
     </div>
 </div>

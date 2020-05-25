@@ -1,13 +1,13 @@
 @if ($type=='button')    
-<button {{ $attributes->merge(['class' => 'btn btn-labeled']) }} type="button">
+<button class="btn btn-labeled {{$class}}" type="button" id="{{$id}}">
     <span class="btn-label"><i class="fas fa-fw {{$icon}}"></i></span>{{$text}}
 </button>
 @elseif($type=='submit')
-<button {{ $attributes->merge(['class' => 'btn btn-labeled']) }} type="submit">
+<button class="btn btn-labeled {{$class}}" type="submit" id="{{$id}}">
     <span class="btn-label"><i class="fas fa-fw {{$icon}}"></i></span>{{$text}}
 </button>
 @else
-<a {{ $attributes->merge(['class' => 'btn btn-labeled']) }} href="{{$link}}" role="button">
+<a class="btn btn-labeled {{$class}}" href="{{route($link)}}" role="button" id="{{$id}}">
     <span class="btn-label"><i class="fas fa-fw {{$icon}}"></i></span>{{$text}}
 </a>
 @endif

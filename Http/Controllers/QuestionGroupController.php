@@ -50,6 +50,7 @@ class QuestionGroupController extends Controller
             "code"                => 'required',
             "category_id"         => 'required',
             "question_per_page"   => 'required',
+            "grade_formula"       => 'required',
             // "randomize_no"        => 'required',
             // "availability"           => 'required',
         ));
@@ -123,6 +124,7 @@ class QuestionGroupController extends Controller
             "code"                => 'required',
             "category_id"         => 'required',
             "question_per_page"   => 'required',
+            "grade_formula"       => 'required',
             // "randomize_no"        => 'required',
             // "availability"           => 'required',
         ));

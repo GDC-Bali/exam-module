@@ -42,7 +42,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="code" class="col-md-2 col-form-label">Banyak Percobaan</label>
+                        <label for="grade_formula" class="col-md-2 col-form-label">Tipe penilaian</label>
+                        <div class="col-md-10">
+                            <select name="grade_formula" id="grade_formula" class="form-control">
+                                <option hidden value=""></option>
+                                <option {{ $data->grade_formula == 1 ? 'selected' : '' }} value="1">Rata = rata</option>
+                                <option {{ $data->grade_formula == 2 ? 'selected' : '' }} value="2">Akumulasi</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="code" class="col-md-2 col-form-label">Maksimal Percobaan</label>
                         <div class="col-md-10">
                             <select name="attempt_allowed" id="attempt_allowed" class="form-control">
                                 <option value="-1" {{$data->attempt_allowed==-1?'selected':''}}>Tidak terbatas</option>
@@ -84,8 +94,26 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-10 offset-md-2">
-                            <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/>
-                            <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/>
+                            @component('exam::components.button-icon', [
+                                'type' => 'a',
+                                'id' => '',
+                                'text' => 'Kembali',
+                                'icon' => 'fa-chevron-circle-left',
+                                'link' => 'exam.question-group.index',
+                                'class' => 'btn-secondary btn-sm'
+                            ])
+                            @endcomponent
+                            {{-- <x-exam-button-icon type="a" text="Kembali" icon="fa-chevron-circle-left" :link="url()->previous()" class="btn-secondary btn-sm"/> --}}
+                            @component('exam::components.button-icon', [
+                                'type' => 'submit',
+                                'id' => 'submit',
+                                'text' => 'Simpan',
+                                'icon' => 'fa-paper-plane',
+                                'link' => 'exam.question-group.index',
+                                'class' => 'btn-success btn-sm'
+                            ])
+                            @endcomponent
+                            {{-- <x-exam-button-icon type="submit" id="submit" text="Simpan" icon="fa-paper-plane" class="btn-success btn-sm"/> --}}
                         </div>
                     </div>
                 </form> 
@@ -214,7 +242,12 @@
     $(document).ready(function(){
         $('#category_id').select2({
             allowClear : true,
-            placeholder : 'Select Category',
+            placeholder : 'Pilih kategori',
+            width: 'resolve',
+        });
+        $('#grade_formula').select2({
+            allowClear : true,
+            placeholder : 'Pilih metode penilaian',
             width: 'resolve',
         });
         var tableSelectQuestion;
@@ -338,21 +371,21 @@
         for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
         e.preventDefault();
         $('#submit').prop('disabled', true);
-        $('#submit').html("Submiting...");            
+        // $('#submit').html("Submiting...");            
         $.ajax({
             url: $(this).attr('action'),
             type: $(this).attr('method'),
             data: $(this).serialize(),
             success: function (res){
                 $('#submit').prop('disabled', false);
-                $('#submit').html("Submit");
+                // $('#submit').html("Submit");
                 if(res.status){                        
                     window.location.href = "{{route('exam.question-group.index')}}";
                 }
             },
             error: function(err){
                 $('#submit').prop('disabled', false);
-                $('#submit').html("Submit");
+                // $('#submit').html("Submit");
                 var response = JSON.parse(err.responseText);
                 var errorString = '';
                 $.each( response.message, function( key, value) {

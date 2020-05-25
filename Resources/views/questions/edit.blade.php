@@ -1,4 +1,5 @@
 @extends('exam::layouts.master')
+<<<<<<< HEAD
 <style>
     .bobot{
         text-align: center;
@@ -8,6 +9,9 @@
         min-width: 100px !important;
     }
 </style>
+=======
+
+>>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
 @section('content_exam')
     <div class="card p-3">        
         <div class="row">
@@ -42,13 +46,21 @@
                                 <div class="form-group row">
                                     <label for="code" class="col-md-2 col-form-label">Kode Soal <sup class="text-danger">*</sup></label>
                                     <div class="col-md-10">
+<<<<<<< HEAD
                                         <input type="text" name="code" class="form-control" id="code" placeholder="Input kode soal" value="{{$data->code}}">
+=======
+                                        <input type="text" name="code" class="form-control" id="code" placeholder="Enter code" value="{{$data->code}}">
+>>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="competencies" class="col-md-2 col-form-label">Kompetensi</label>
                                     <div class="col-md-10">
+<<<<<<< HEAD
                                         <input type="text" name="competencies" class="form-control" id="competencies" placeholder="Input kompetensi. Contoh: siswa mampu menghitung luas lingkaran" value="{{$data->competencies}}">
+=======
+                                        <input type="text" name="competencies" class="form-control" id="competencies" placeholder="Enter competency" value="{{$data->competencies}}">
+>>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -105,16 +117,28 @@
                                                     <tr>
                                                         <td style="width:90%"><textarea id="option_{{($key+1)}}" name="option_text[]" type="text" class="form-control option">{!! $val->option_text !!}</textarea></td>
                                                         {{-- <td style="width:20%"><input name="option_value" type="text" class="form-control"></td> --}}
+<<<<<<< HEAD
                                                         {{-- <td style="width:5%"><input name="radio" type="radio" onchange="check_value(this)" class="radio" {{$val->option_value == 100 ? 'checked' : ''}}></td>
                                                         <td class="option_value"><input type="hidden" name="option_value[]" value="{{$val->option_value}}"></td> --}}
                                                         <td style="width:5%" class="option_value"><input class="bobot" min="0" max="100" type="number" name="option_value[]" value="{{ $val->option_value }}"></td>
+=======
+                                                        <td style="width:5%"><input name="radio" type="radio" onchange="check_value(this)" class="radio" {{$val->option_value == 100 ? 'checked' : ''}}></td>
+                                                        <td class="option_value"><input type="hidden" name="option_value[]" value="{{$val->option_value}}"></td>
+>>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                                         <td style="width:5%"></td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
+<<<<<<< HEAD
                                                         <td colspan="2"><x-exam-button-icon onclick="addOption()" text="Tambah Option" icon="fa-plus" class="btn btn-xs btn-success"/></td>
+=======
+                                                        <td colspan="2">
+                                                            <button type="button" onclick="addOption()" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>&nbsp;Tambah Opsi</button>
+                                                            {{-- <x-exam-button-icon onclick="addOption()" text="Tambah Option" icon="fa-plus" class="btn btn-xs btn-success"/> --}}
+                                                        </td>
+>>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                                     </tr>
                                                 </tfoot>
                                             </table>                                        
@@ -126,9 +150,15 @@
                                 <div id="essay" style="">
                                     {{-- essay --}}
                                     <div class="form-group row">
+<<<<<<< HEAD
                                         <label class="col-md-2 col-form-label" for="allow_blank">Perbolehkan Jawaban Kosong</label>  
                                         <div class="col-md-10">
                                             <input type="checkbox" name="allow_blank" data-toggle="toggle" data-size="sm" data-on="Ya" data-off="Tidak" data-onstyle="success" data-offstyle="default">
+=======
+                                        <label class="col-md-2 col-form-label" for="allow_blank">Jawaban Kosong</label>  
+                                        <div class="col-md-10">
+                                            <input type="checkbox" name="allow_blank" data-toggle="toggle" data-size="sm" data-on="Boleh" data-off="Tidak Boleh" data-onstyle="success" data-offstyle="default">
+>>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                         </div>
                                     </div>
                                     {{-- essay --}}
@@ -164,9 +194,14 @@
         <tr>
             <td style="width:90%"><textarea name="option_text[]" type="text" class="form-control" id=""></textarea></td>
             {{-- <td style="width:20%"><input name="option_value" type="text" class="form-control"></td> --}}
+<<<<<<< HEAD
             {{-- <td style="width:5%"><input name="radio" type="radio" onchange="check_value(this)" class="radio"></td>
             <td class="option_value"><input type="hidden" name="option_value[]" value="0"></td> --}}
             <td style="width:5%" class="option_value"><input class="bobot" min="0" max="100" type="number" name="option_value[]" value="0"></td>
+=======
+            <td style="width:5%"><input name="radio" type="radio" onchange="check_value(this)" class="radio"></td>
+            <td class="option_value"><input type="hidden" name="option_value[]" value="0"></td>
+>>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
             <td style="width:5%"><button onclick="delete_option(this)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td>
         </tr>
     </template>
@@ -274,7 +309,11 @@
             filebrowserUploadUrl      : "{{route('exam.questions.image_upload', ['_token' => csrf_token()])}}",
         });
         @endforeach
+<<<<<<< HEAD
         // $("input[type='number']").inputSpinner();
+=======
+        $("input[type='number']").inputSpinner();
+>>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
         $('#form').on('submit', function(e){
             for(var i in CKEDITOR.instances) CKEDITOR.instances[i].updateElement();
             e.preventDefault();
