@@ -1,5 +1,4 @@
 @extends('exam::layouts.master')
-<<<<<<< HEAD
 <style>
     .bobot{
         text-align: center;
@@ -9,9 +8,6 @@
         min-width: 100px !important;
     }
 </style>
-=======
-
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
 @section('content_exam')
     <div class="card p-3">        
         <div class="row">
@@ -45,21 +41,13 @@
                                 <div class="form-group row">
                                     <label for="code" class="col-md-2 col-form-label">Kode Soal <sup class="text-danger">*</sup></label>
                                     <div class="col-md-10">
-<<<<<<< HEAD
                                         <input type="text" name="code" class="form-control" id="code" placeholder="Input kode soal">
-=======
-                                        <input type="text" name="code" class="form-control" id="code" placeholder="Enter code">
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="competencies" class="col-md-2 col-form-label">Kompetensi</label>
                                     <div class="col-md-10">
-<<<<<<< HEAD
                                         <input type="text" name="competencies" class="form-control" id="competencies" placeholder="Input kompetensi. Contoh: siswa mampu menghitung luas lingkaran">
-=======
-                                        <input type="text" name="competencies" class="form-control" id="competencies" placeholder="Enter competency">
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -96,11 +84,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row" style="display:none">
-<<<<<<< HEAD
-                                        <label class="col-md-4 col-form-label" for="single_answer">Jawaban Lebih Dari Satu</label>  
-=======
                                         <label class="col-md-2 col-form-label" for="single_answer">Jawaban Lebih Dari Satu</label>  
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                         <div class="col-md-10">
                                             <input type="checkbox" name="single_answer" data-toggle="toggle" data-size="sm" data-on="Ya" data-off="Tidak" data-onstyle="success" data-offstyle="default">
                                         </div>
@@ -112,8 +96,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Teks Pilihan Jawaban</th>
-<<<<<<< HEAD
                                                         <th>Bobot Jawaban</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="option_body">
@@ -124,31 +108,15 @@
                                                         {{-- <td style="width:5%"><input name="radio" type="radio" onchange="check_value(this)" class="radio"></td>
                                                         <td class="option_value"><input type="hidden" name="option_value[]" value="0"></td> --}}
                                                         <td style="width:5%" class="option_value"><input class="bobot" min="0" max="100" type="number" name="option_value[]" value="0"></td>
-=======
-                                                        <th>Jawaban Benar</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="option_body">
-                                                    @for($i=1;$i<=3;$i++)
-                                                    <tr>
-                                                        <td style="width:90%"><textarea id="option_{{$i}}" name="option_text[]" type="text" class="form-control option"></textarea></td>
-                                                        {{-- <td style="width:20%"><input name="option_value" type="text" class="form-control"></td> --}}
-                                                        <td style="width:5%"><input name="radio" type="radio" onchange="check_value(this)" class="radio"></td>
-                                                        <td class="option_value"><input type="hidden" name="option_value[]" value="0"></td>
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                                         <td style="width:5%"></td>
                                                     </tr>
                                                     @endfor
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-<<<<<<< HEAD
-                                                        <td colspan="2"><x-exam-button-icon onclick="addOption()" text="Tambah Option" icon="fa-plus" class="btn btn-xs btn-success"/></td>
-=======
-                                                        <td colspan="2">
+                                                        <td colspan="3">
                                                             <button type="button" onclick="addOption()" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>&nbsp;Tambah Opsi</button>
                                                         </td>
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                                     </tr>
                                                 </tfoot>
                                             </table>                                        
@@ -160,15 +128,9 @@
                                 <div id="essay" style="">
                                     {{-- essay --}}
                                     <div class="form-group row">
-<<<<<<< HEAD
                                         <label class="col-md-2 col-form-label" for="allow_blank">Perbolehkan Jawaban Kosong</label>  
                                         <div class="col-md-10">
                                             <input type="checkbox" name="allow_blank" data-toggle="toggle" data-size="sm" data-on="Ya" data-off="Tidak" data-onstyle="success" data-offstyle="default">
-=======
-                                        <label class="col-md-2 col-form-label" for="allow_blank">Jawaban Kosong</label>  
-                                        <div class="col-md-10">
-                                            <input type="checkbox" name="allow_blank" data-toggle="toggle" data-size="sm" data-on="Boleh" data-off="Tidak Boleh" data-onstyle="success" data-offstyle="default">
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
                                         </div>
                                     </div>
                                     {{-- essay --}}
@@ -203,15 +165,7 @@
     <template>
         <tr>
             <td style="width:90%"><textarea name="option_text[]" type="text" class="form-control" id=""></textarea></td>
-            {{-- <td style="width:20%"><input name="option_value" type="text" class="form-control"></td> --}}
-<<<<<<< HEAD
-            {{-- <td style="width:5%"><input name="radio" type="radio" onchange="check_value(this)" class="radio"></td>
-            <td class="option_value"><input type="hidden" name="option_value[]" value="0"></td> --}}
             <td style="width:5%" class="option_value"><input class="bobot" min="0" max="100" type="number" name="option_value[]" value="0"></td>
-=======
-            <td style="width:5%"><input name="radio" type="radio" onchange="check_value(this)" class="radio"></td>
-            <td class="option_value"><input type="hidden" name="option_value[]" value="0"></td>
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
             <td style="width:5%"><button onclick="delete_option(this)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td>
         </tr>
     </template>
@@ -268,18 +222,12 @@
         });
         $('#smartwizard').smartWizard({
             theme: 'dots',
-<<<<<<< HEAD
             keyNavigation: false,
-=======
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
             lang: {  // Language variables
                 next: 'Berikutnya',
                 previous: 'Sebelumnya'
             },
-<<<<<<< HEAD
             useURLhash: false,
-=======
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
             toolbarSettings: {
                 toolbarExtraButtons: [
                     $('<button id="submit"></button>').text('Simpan')
@@ -298,7 +246,6 @@
             width: 'resolve',
         });
         CKEDITOR.replace('question_text',{
-<<<<<<< HEAD
             extraPlugins              : 'image2,uploadimage',            
             uploadUrl                 : "{{route('exam.questions.image_upload_drop', ['_token' => csrf_token()])}}",
             filebrowserUploadMethod   : "form",
@@ -307,14 +254,8 @@
         CKEDITOR.replace('feedback',{
             extraPlugins              : 'image2,uploadimage',            
             uploadUrl                 : "{{route('exam.questions.image_upload_drop', ['_token' => csrf_token()])}}",
-=======
             filebrowserUploadMethod   : "form",
             filebrowserUploadUrl      : "{{route('exam.questions.image_upload', ['_token' => csrf_token()])}}",            
-        });
-        CKEDITOR.replace('feedback',{
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
-            filebrowserUploadMethod   : "form",            
-            filebrowserUploadUrl      : "{{route('exam.questions.image_upload', ['_token' => csrf_token()])}}",
         });
         CKEDITOR.replace('option_1',{
             height: '100px',

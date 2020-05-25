@@ -44,7 +44,6 @@
 @section('script_exam')
 <script>
     $(document).ready(function(){
-<<<<<<< HEAD
     });
     $('#form').unbind('submit').submit(function(e){
         e.preventDefault();
@@ -75,35 +74,6 @@
         });
         $('#form').unbind('submit');
         return false;
-=======
-        $('#form').on('submit', function(e){
-            e.preventDefault();
-            $('#submit').prop('disabled', true);
-            $.ajax({
-                url: $(this).attr('action'),
-                type: $(this).attr('method'),
-                data: $(this).serialize(),
-                success: function (res){
-                    $('#submit').prop('disabled', false);                    
-                    if(res.status){
-                        window.location.href = "{{route('exam.group-category.index')}}";
-                    }
-                },
-                error: function(err){
-                    $('#submit').prop('disabled', false);                    
-                    var response = JSON.parse(err.responseText);
-                    var errorString = '';
-                    $.each( response.message, function( key, value) {
-                        errorString += value + "<br>";
-                    });
-                    Swal.fire({
-                        icon: 'error',
-                        title: errorString,                        
-                    })
-                }
-            }); 
-        });
->>>>>>> fd98dc863a138abd34ab8201c39f1ae4a198e86f
     });
 </script>
 @endsection

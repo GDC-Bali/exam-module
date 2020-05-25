@@ -174,11 +174,15 @@ class QuestionGroupController extends Controller
 
     public function multiple_delete(request $request){        
         try {
+            DB::beginTransaction();
             foreach($request->id as $id){
+                GroupHasQuestion::where('group_id',$id)->delete();
                 QuestionGroup::destroy($id);
             }
+            DB::commit();
             return ['status' => true];
         } catch (\Throwable $th) {
+            DB::rollback();
             throw $th;
         }        
     }

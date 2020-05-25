@@ -46,7 +46,7 @@
                         <div class="col-md-10">
                             <select name="grade_formula" id="grade_formula" class="form-control">
                                 <option hidden value=""></option>
-                                <option {{ $data->grade_formula == 1 ? 'selected' : '' }} value="1">Rata = rata</option>
+                                <option {{ $data->grade_formula == 1 ? 'selected' : '' }} value="1">Rata - rata</option>
                                 <option {{ $data->grade_formula == 2 ? 'selected' : '' }} value="2">Akumulasi</option>
                             </select>
                         </div>

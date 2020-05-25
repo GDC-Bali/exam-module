@@ -188,7 +188,10 @@ class AttemptController extends Controller
             } else {
                 $attempt->status = Attempt::STATUS_FINISHED;
             }
-            $attempt->grade = $totalPoint/$attempt->question_total;
+            if($attempt->group->grade_formula == 1)
+                $attempt->grade = $totalPoint/$attempt->question_total;
+            else if($attempt->group->grade_formula == 2)
+                $attempt->grade = $totalPoint;
             $attempt->save();
             DB::commit();
             return response()->json([
@@ -287,8 +290,8 @@ class AttemptController extends Controller
         if($attempt->start_at == null || $attempt->finish_at == null){
             $hasil['waktu'] = '--:--:--';
         }else{
-            $hasil['waktu'] = Carbon::parse($attempt->finish_at)->diffInSeconds(Carbon::parse($attempt->start_at));
-            $hasil['waktu'] = gmdate('H:i:s', $hasil['waktu']);
+            $hasil['waktu'] = Carbon::parse($attempt->finish_at)->diffInSeconds(Carbon::parse($attempt->start_at));            
+            $hasil['waktu'] = gmdate('H:i:s', (int)$hasil['waktu']);
         }
         return view('exam::attempt.result', compact(['attempt','hasil','type']));
     }
