@@ -27,7 +27,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('exam.attempt.index')}}" class="nav-link">Percobaan/Attempt</a>
+                        <a href="{{route('attempt.index')}}" class="nav-link">Percobaan/Attempt</a>
                     </li>
                   </ul>
                 </div>

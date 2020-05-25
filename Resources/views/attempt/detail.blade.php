@@ -56,8 +56,8 @@
             <div class="mt-2">
                 <div>
                     <center>
-                        <a href="{{ route('exam.attempt.show', $attempt->id) }}" class="btn btn-lg btn-primary-darker btn-sm font-weight-bold px-5">Mulai</a>
-                        {{-- <a href="{{route('exam.attempt.review',$attempt->id)}}"><button style="border-radius: 24px;" class="btn pl-5 pr-5 btn-primary">Pembahasan</button></a> --}}
+                        <a href="{{ route('attempt.show', $attempt->id) }}" class="btn btn-lg btn-primary-darker btn-sm font-weight-bold px-5">Mulai</a>
+                        {{-- <a href="{{route('attempt.review',$attempt->id)}}"><button style="border-radius: 24px;" class="btn pl-5 pr-5 btn-primary">Pembahasan</button></a> --}}
                     </center>
                 </div>
             </div>

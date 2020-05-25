@@ -40,7 +40,7 @@
                         <div class="col-md-10">
                             <select name="grade_formula" id="grade_formula" class="form-control">
                                 <option hidden value=""></option>
-                                <option value="1">Rata = rata</option>
+                                <option value="1">Rata - rata</option>
                                 <option value="2">Akumulasi</option>
                             </select>
                         </div>

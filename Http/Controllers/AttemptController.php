@@ -168,7 +168,7 @@ class AttemptController extends Controller
             $totalquestions = $group->questions()->count();
             return view('exam::attempt.show', compact('id', 'questions', 'totalquestions', 'group', 'attempt'));
         } else {
-            return redirect(route('exam.attempt.result', $attempt->id));
+            return redirect(route('attempt.result', $attempt->id));
         }
     }
 
@@ -188,7 +188,12 @@ class AttemptController extends Controller
             } else {
                 $attempt->status = Attempt::STATUS_FINISHED;
             }
-            $attempt->grade = $totalPoint/$attempt->question_total;
+            if($attempt->group->grade_formula == 1)
+                $attempt->grade = $totalPoint/$attempt->question_total;
+            else if($attempt->group->grade_formula == 2)
+                $attempt->grade = $totalPoint;
+
+                dd($totalPoint, $attempt->question_total, $attempt->group->grade_formula, $attempt->grade);
             $attempt->save();
             DB::commit();
             return response()->json([

@@ -178,7 +178,7 @@
     const zeroPad = (num, places) => String(num).padStart(places, '0')
     // function saveNewAttempt(group_id){
     //     $.ajax({
-    //         url: "/exam/attempt",
+    //         url: "/attempt",
     //         type: 'POST',
     //         data: {
     //             '_token': "{{ csrf_token() }}",
@@ -200,7 +200,7 @@
 
     function getQuestion(number){
         $.ajax({
-            url: "/exam/get-attempt/"+number,
+            url: "/get-attempt/"+number,
             type: 'GET',
             success: function (res){
                 if(res){
@@ -320,7 +320,7 @@
         });
         if(answers.length != 0){
             $.ajax({
-                url: "/exam/attempt/save-answer",
+                url: "/attempt/save-answer",
                 type: 'POST',
                 data: {
                     '_token': "{{ csrf_token() }}",
@@ -405,7 +405,7 @@
 
     function requestFinish(){
         $.ajax({
-            url: "{{route('exam.attempt.finish')}}",
+            url: "{{route('attempt.finish')}}",
             type: "POST",
             data: {
                 _token: "{{ csrf_token() }}",
@@ -414,7 +414,7 @@
             success: function(res){
                 if(res.status){
                     $(window).unbind('beforeunload');
-                    window.location.href = '/exam/attempt/'+attempt_id+'/result';
+                    window.location.href = '/attempt/'+attempt_id+'/result';
                 }
             },
             error: function(err){

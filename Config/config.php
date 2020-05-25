@@ -14,6 +14,8 @@ return [
         'filter' => false,
         'key' => null,
         'name' => null,
+        'domain_main' => 'localhost',
+        'domain_attempt' => 'exam.localhost'
     ],
     'layout' => [
         'master' => 'adminlte::page',

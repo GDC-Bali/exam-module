@@ -4,7 +4,7 @@
 
 <div class="d-none d-md-flex mt-4 mb-5">    
     <div class="my-1 mr-2">
-        <a href="{{route('exam.attempt.result', $attempt->id)}}">
+        <a href="{{route('attempt.result', $attempt->id)}}">
             <button class="btn btn-block btn-sm btn-secondary font-weight-bold">
                 KEMBALI
             </button>

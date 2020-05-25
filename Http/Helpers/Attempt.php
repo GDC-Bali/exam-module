@@ -60,17 +60,17 @@ class Attempt
 
     public static function startAttempt($attemptId)
     {
-        return redirect(route('exam.attempt.start', $attemptId));
+        return redirect(route('attempt.start', $attemptId));
     }
 
     public static function showAttempt($attemptId)
     {
-        return redirect(route('exam.attempt.show', $attemptId));
+        return redirect(route('attempt.show', $attemptId));
     }
 
     public static function showResult($userId, $examId)
     {
-        return redirect(route('exam.attempt.result', [$userid, $examId]));
+        return redirect(route('attempt.result', [$userid, $examId]));
     }
 
     public static function getAttempts($examId, $userId, $paketId)

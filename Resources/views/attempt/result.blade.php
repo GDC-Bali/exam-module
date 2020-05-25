@@ -9,11 +9,7 @@
             <h2 class="h6 text-center mb-4">Total Nilai Anda Adalah</h2>
             <div class="progress mx-auto" data-value='{{$attempt->grade}}'> <span class="progress-left"> <span class="progress-bar border-success"></span> </span> <span class="progress-right"> <span class="progress-bar border-success"></span> </span>
                 <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                    @if($type == 'Essay')
-                        <div class="h2 font-weight-bold">{{number_format($attempt->grade,0)}}</div>
-                    @else
-                        <div class="h2 font-weight-bold">{{number_format($attempt->grade,0)}}/100</div>
-                    @endif
+                    <div class="h2 font-weight-bold">{{number_format($attempt->grade,0)}}</div>
                 </div>
             </div>
             <div class="card mt-3 p-3 shadow">
@@ -73,7 +69,7 @@
             </div>
             <div class="mt-5">
                 <div>
-                    <center><a href="{{route('exam.attempt.review',$attempt->id)}}"><button class="btn pl-5 pr-5 btn-primary btn-primary-darker">Pembahasan</button></a></center>
+                    <center><a href="{{route('attempt.review',$attempt->id)}}"><button class="btn pl-5 pr-5 btn-primary btn-primary-darker">Pembahasan</button></a></center>
                 </div>
             </div>
         </div>

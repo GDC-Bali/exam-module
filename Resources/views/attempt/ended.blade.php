@@ -12,7 +12,7 @@
                     <h3 class="text-center">Maaf ujian ini telah berakhir</h3>
                     <p class="text-center">{{$ended_at}}</p>
                     @if (count($history)>0)
-                    <p class="text-center"><a href="{{route('exam.attempt.history', [$user, $exam])}}" class="btn btn-primary-darker px-5 text-center">Lihat Hasil</a></p>
+                    <p class="text-center"><a href="{{route('attempt.history', [$user, $exam])}}" class="btn btn-primary-darker px-5 text-center">Lihat Hasil</a></p>
                     @endif
                 </div>
             </div>

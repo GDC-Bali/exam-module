@@ -69,7 +69,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route("exam.attempt.getdata") }}',
+                    url: '{{ route("attempt.getdata") }}',
                     data: function ( d ) {
                         d.keyword = $('#filter-keyword').val();
                         d.paket = $('#filter-paket').val();
@@ -101,7 +101,7 @@
     }         
 
         $('#example tbody').on( 'click', 'tr td:not(:first-child)', function () {                  
-            window.location.href = "{{url('exam/attempt')}}/"+table.row($(this).parent()).data().id+"/result/";
+            window.location.href = "{{url('attempt')}}/"+table.row($(this).parent()).data().id+"/result/";
         });        
 
         $("#filter-keyword").keyup(function() {
