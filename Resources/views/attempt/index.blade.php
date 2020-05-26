@@ -1,28 +1,3 @@
-<<<<<<< HEAD
-=======
-{{-- @extends('exam::layouts.attempt')
-
-@section('content')      
-<div class="row my-5">
-    <div class="col-md-8 offset-md-2">
-        <div class="float-left">                    
-            <button id="delete" class="btn btn-secondary mg-5 mr-2"><i class="typcn typcn-arrow-unsorted"></i> Sort</button>                    
-        </div>
-        <div class="float-left">
-            <a href="{{route('exam.question-type.create')}}">
-                <button class="btn btn-secondary mg-5 mr-2"><i class="typcn typcn-filter"></i> Filter</button>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-8 offset-md-2 pt-3 mb-5">
-        @foreach ($groups as $group)
-            <x-exam-paket-item :group="$group"/>
-        @endforeach
-    </div><!-- col -->
-</div><!-- row -->
-@endsection --}}
-
->>>>>>> 726fccfdff6db1820bf4c7e1b161fc1de2a53d8f
 @extends('exam::layouts.master')
 
 @section('content_exam')
