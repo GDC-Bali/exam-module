@@ -188,12 +188,14 @@ class AttemptController extends Controller
             } else {
                 $attempt->status = Attempt::STATUS_FINISHED;
             }
+            // $grade = $totalPoint/$attempt->group->questions_totalscore()*100;
+            // dd($grade);
+            // dd($totalPoint, $attempt->question_total, $attempt->group->questions_totalscore(), $attempt->grade);
             if($attempt->group->grade_formula == 1)
                 $attempt->grade = $totalPoint/$attempt->question_total;
             else if($attempt->group->grade_formula == 2)
                 $attempt->grade = $totalPoint;
-
-                dd($totalPoint, $attempt->question_total, $attempt->group->grade_formula, $attempt->grade);
+            
             $attempt->save();
             DB::commit();
             return response()->json([

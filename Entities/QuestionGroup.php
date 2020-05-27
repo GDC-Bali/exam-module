@@ -38,9 +38,13 @@ class QuestionGroup extends Model
         return $this->questions()->count();
     }
 
-    public function questions_totalvalue()
+    public function questions_totalscore()
     {
-        return $this->questions()->sum('');
+        $total = 0;
+        foreach($this->questions as $key=>$item){
+            $total += $item->totalscore;
+        }
+        return $total;
     }
 
     public function reorderQuestions()
