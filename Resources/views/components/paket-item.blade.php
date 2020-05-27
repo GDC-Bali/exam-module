@@ -1,4 +1,4 @@
-<a href="{{ route('exam.attempt.detail', $group->id) }}" class="card text-dark my-2 bg-light border-0" style="text-decoration:none;">
+<a href="{{ route('attempt.detail', $group->id) }}" class="card text-dark my-2 bg-light border-0" style="text-decoration:none;">
     <div class="card-body p-3">
         <div class="row">
             <div class="col-2 text-center">

@@ -8,6 +8,7 @@ class Question extends Model
 {
     protected $guarded = ['id'];
     protected $table = 'ms_question';
+    protected $appends = ['totalscore'];
     public $incrementing = false;
     public static function boot()
     {
@@ -27,6 +28,11 @@ class Question extends Model
         } else {
             return $this->hasMany(QuestionOption::class,'question_id');
         }
+    }
+
+    public function getTotalscoreAttribute()
+    {
+        return $this->question_option()->sum('option_value');
     }
 
     public function category(){

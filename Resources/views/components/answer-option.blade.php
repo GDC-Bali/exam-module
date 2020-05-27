@@ -14,7 +14,7 @@
     }
 @endphp
 <div class="form-check mt-2">
-    <form action="{{route('exam.attempt.store')}}" method="POST">
+    <form action="{{route('attempt.store')}}" method="POST">
         @foreach ($nOptions as $key=>$option)
             <label class="pl-3 option-text"><input type="radio" name="answer" value="{{$option->id}}"/>
                 <span class="font-weight-bold">{{$key}}</span>

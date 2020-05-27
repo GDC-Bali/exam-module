@@ -168,7 +168,7 @@ class AttemptController extends Controller
             $totalquestions = $group->questions()->count();
             return view('exam::attempt.show', compact('id', 'questions', 'totalquestions', 'group', 'attempt'));
         } else {
-            return redirect(route('exam.attempt.result', $attempt->id));
+            return redirect(route('attempt.result', $attempt->id));
         }
     }
 

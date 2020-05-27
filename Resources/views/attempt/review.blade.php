@@ -95,7 +95,7 @@
         <div class="container-fluid">
             <div class="row mt-3">                
                 <div class="col-6 px-1 px-sm-2">
-                    <a href="{{route('exam.attempt.result', $attempt->id)}}">
+                    <a href="{{route('attempt.result', $attempt->id)}}">
                         <button class="btn btn-block btn-sm btn-secondary font-weight-bold btn-soal">
                             KEMBALI
                         </button>
@@ -115,7 +115,7 @@
 <script>    
     function getQuestion(number){
         $.ajax({
-            url: "/exam/get-review/"+number+'/{{$attempt->id}}',
+            url: "/get-review/"+number+'/{{$attempt->id}}',
             type: 'GET',
             success: function (res){
                 if(res.status){
@@ -160,7 +160,7 @@
                             '<div class="col-12" id="ans-user">'+
                                 
                             '</div>'+
-                            '<form action="{{url("exam/attempt/save-essay")}}/'+data.ans.id+'" id="save-ans" method="post" class="form-horizontal">'+
+                            '<form action="{{url("attempt/save-essay")}}/'+data.ans.id+'" id="save-ans" method="post" class="form-horizontal">'+
                                 '{{csrf_field()}}'+
                                 '<div class="form-group row ml-1 mt-5">'+
                                     '<label class="col-form-label col-sm-2">Nilai</label>'+                                    
@@ -296,14 +296,14 @@
         }).then((result) => {
             if (result.value) {
                 $.ajax({
-                    url: "{{route('exam.attempt.finalisasiessay', $attempt->id)}}",
+                    url: "{{route('attempt.finalisasiessay', $attempt->id)}}",
                     type: "GET",
                     data: {
                         _token: "{{ csrf_token() }}",                        
                     },
                     success: function(res){
                         if(res.status){
-                            window.location.href = '/exam/attempt/{{$attempt->id}}/result';
+                            window.location.href = '/attempt/{{$attempt->id}}/result';
                         }else{
                             Swal.fire({
                                 icon: 'error',
