@@ -158,6 +158,7 @@ class AttemptController extends Controller
         if($attempt->status == Attempt::STATUS_INITIALIZED || $attempt->status == Attempt::STATUS_STARTED){
             if($attempt->status == Attempt::STATUS_INITIALIZED){
                 $attempt->status = Attempt::STATUS_STARTED;
+                $attempt->start_at = date('Y-m-d H:i:s');
                 $attempt->save();
             }
             $group = QuestionGroup::with('questions.type', 'questions.question_option')->where('id', $attempt->question_group_id)->first();
