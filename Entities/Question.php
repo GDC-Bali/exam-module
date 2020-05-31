@@ -42,4 +42,9 @@ class Question extends Model
     public function type(){
         return $this->hasOne(QuestionType::class,'id','question_type_id');
     }
+
+    public function answer()
+    {
+        return $this->belongsTo(AttemptAnswer::class, 'id', 'question_id');
+    }
 }
