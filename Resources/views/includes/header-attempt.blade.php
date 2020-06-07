@@ -18,7 +18,9 @@
 <header>
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-transparent" id="navbar-exam">
-        <a class="btn btn-circle" href="{{url()->previous()}}"><i class="fas fa-arrow-left"></i></a>
+        {{-- Back button pada header --}}
+        {{-- <a class="btn btn-circle" href="{{url()->previous()}}"><i class="fas fa-arrow-left"></i></a> --}}        
+
         {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button> --}}
