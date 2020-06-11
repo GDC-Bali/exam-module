@@ -12,6 +12,7 @@
 */
 Route::domain(config('exam.route.domain_attempt'))->group(function () {
     Route::resource('/attempt', 'AttemptController');
+    Route::get('/{exam_id}/{code}', 'AttemptController@invalid')->name('attempt.invalid');
     Route::get('/attempt/start/{id}', 'AttemptController@start')->name('attempt.start');
     Route::get('/attempt/show-essay', 'AttemptController@showEssay')->name('attempt.show-essay');
     Route::get('/attempt/{id}/detail', 'AttemptController@detail')->name('attempt.detail');

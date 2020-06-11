@@ -8,9 +8,9 @@
               
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{route('exam.dashboard')}}" class="nav-link">Dashboard</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Paket Soal</a>
                         <div class="dropdown-menu">
@@ -26,9 +26,9 @@
                         <a class="dropdown-item" href="{{route('exam.question-type.index')}}">Tipe Soal</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{route('attempt.index')}}" class="nav-link">Percobaan/Attempt</a>
-                    </li>
+                    {{-- <li class="nav-item">
+                        <a href="{{route('exam.attempt.index')}}" class="nav-link">Percobaan/Attempt</a>
+                    </li> --}}
                   </ul>
                 </div>
             </nav>
